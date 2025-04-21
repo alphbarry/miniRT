@@ -16,6 +16,21 @@
 ** Parse a 3D vector from a string (format: x,y,z)
 */
 
+void	ft_free_split(char **splt)
+{
+    int	i;
+
+    if (!splt)
+        return;
+    i = 0;
+    while (splt[i])
+    {
+        free(splt[i]);
+        i++;
+    }
+    free(splt);
+}
+
 int	ft_parse_vector(char *str, t_vec3 *vec)
 {
 	char	**parts;

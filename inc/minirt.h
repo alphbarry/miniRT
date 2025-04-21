@@ -194,7 +194,7 @@ t_vec3		ft_vec3_cross(t_vec3 v1, t_vec3 v2);
 double		ft_vec3_length(t_vec3 v);
 t_vec3		ft_vec3_normalize(t_vec3 v);
 t_vec3		ft_vec3_color_mult(t_vec3 c1, t_vec3 c2);
-t_vec3	ft_vec3_clamp(t_vec3 v, double min, double max);
+t_vec3		ft_vec3_clamp(t_vec3 v, double min, double max);
 
 /*
 ** Ray operations

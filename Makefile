@@ -22,7 +22,7 @@ PINK		=	\033[1;95m
 CIAN		=	\033[1;96m
 
 #<--------------------------------->NAME<------------------------------------>#
-NAME		=	FdF
+NAME		=	miniRT
 
 #<-------------------------------->LIBRARY<---------------------------------->#
 LIBRARY		=	lib/
@@ -76,7 +76,7 @@ all				:
 
 $(NAME)			:	$(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIB_A) $(MLXLIB) -o $@
-	@echo "\n$(GREEN)FdF has been compiled$(DEF_COLOR)"
+	@echo "\n$(GREEN)miniRT has been compiled$(DEF_COLOR)"
 
 clean			:
 	@$(MAKE) $(MKFLAGS) clean -C $(LIBRARY)
@@ -96,7 +96,7 @@ re				:
 	@$(MAKE) $(MKFLAGS) fclean
 	@$(MAKE) $(MKFLAGS) all
 	@echo ""
-	@echo "$(CIAN)FdF has been recompiled$(DEF_COLOR)"
+	@echo "$(CIAN)miniRT has been recompiled$(DEF_COLOR)"
 
 .PHONY			: all clean fclean re
 
