@@ -1,0 +1,29 @@
+# A simple test scene for miniRT
+# Format:
+# A ambient_ratio r,g,b
+# C camera_pos camera_direction fov
+# L light_pos brightness r,g,b
+# sp sphere_center diameter r,g,b
+# pl plane_point plane_normal r,g,b
+
+# Ambient light (ratio 0.2, white color)
+A 0.2 255,255,255
+
+# Camera (position at (0,1,5), looking at (0,0,-1), FOV 70 degrees)
+C 0,1,5 0,0,-1 70
+
+# Light (position at (2,4,4), brightness 0.6, white color)
+L 2,4,4 0.6 255,255,255
+
+# Sphere (center at (0,1,0), diameter 2, red color)
+sp 0,1,0 2 255,0,0
+
+# Plane (point at (0,-1,0), normal pointing up (0,1,0), green color)
+pl 0,-1,0 0,1,0 0,200,0
+
+# Additional sphere (blue, smaller)
+sp -2,0,-2 1 0,0,255
+
+# Additional sphere (yellow, smaller)
+sp 2,0,-2 1 255,255,0
+
