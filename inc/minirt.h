@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include "../lib/mlx_linux/mlx.h"
 # include "../lib/libft/src/libft.h"
-# include "../lib/libft/src/get_next_line.h"
+# include "../lib/gnl/get_next_line.h"
 
 # define WIDTH 800
 # define HEIGHT 600

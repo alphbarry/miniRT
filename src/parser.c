@@ -258,30 +258,24 @@ void	ft_init_scene(t_scene *scene)
 
 int	ft_parse_scene(char *filename, t_scene *scene)
 {
-	int		fd;
-	char	*line;
-	int		ret;
-	int		gnl_ret;
+    int		fd;
+    char	*line;
+    int		ret;
 
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (ft_error("Failed to open scene file"));
-	ft_init_scene(scene);
-	ret = 0;
-	gnl_ret = 1;
-	while (gnl_ret > 0 && ret == 0)
-	{
-		gnl_ret = get_next_line(fd, &line);
-		if (gnl_ret < 0)
-			ret = ft_error("Error reading scene file");
-		else
-		{
-			ret = ft_parse_line(line, scene);
-			free(line);
-		}
-	}
-	close(fd);
-	return (ret);
+    fd = open(filename, O_RDONLY);
+    if (fd < 0)
+        return (ft_error("Failed to open scene file"));
+    ft_init_scene(scene);
+    ret = 0;
+    while ((line = get_next_line(fd)) != NULL && ret == 0)
+    {
+        ret = ft_parse_line(line, scene);
+        free(line);
+    }
+    if (line == NULL && ret == 0) // Verificar si hubo un error en get_next_line
+        ret = ft_error("Error reading scene file");
+    close(fd);
+    return (ret);
 }
 
 /*

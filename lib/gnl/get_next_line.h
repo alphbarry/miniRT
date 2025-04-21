@@ -13,7 +13,6 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include "libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -32,7 +31,7 @@ typedef struct s_g_list
 
 char				*get_next_line(int fd);
 int					found_newline(t_g_list *stash);
-t_g_list				*ft_lst_get_last(t_g_list *stash);
+t_g_list			*ft_lst_get_last(t_g_list *stash);
 int					read_and_stash(int fd, t_g_list **stash);
 int					add_to_stash(t_g_list **stash, char *buf, int readed);
 void				extract_line(t_g_list *stash, char **line);

@@ -1,39 +1,69 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: akozin <akozin@student.42barcelona.com>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/10 11:52:48 by akozin            #+#    #+#              #
-#    Updated: 2025/01/03 13:23:57 by alpha            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+#----------------------------------->COLORS<-----------------------------------#
+DEF_COLOR = \033[1;39m
+WHITE = \033[1m
+BLACK = \033[1;30m
+RED = \033[1;31m
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+BLUE = \033[1;34m
+PINK = \033[1;35m
+CIAN = \033[1;36m
 
-NAME = libgnl.a
-RM = rm -f
-CC = cc
+#------------------------------------>NAME<------------------------------------#
+NAME = libft.a
+
+#----------------------------------->HEADER<-----------------------------------#
+HEADER = libft.h
+
+#------------------------------------->SRC<----–-------------------------------#
+SOURCES_DIRECTORY = ./src/
+SRCS =	$(wildcard $(SOURCES_DIRECTORY)*.c)
+
+#------------------------------------>OBJ<-------------------------------------#
+OBJS_DIR = ./objs/
+
+OBJS = $(addprefix $(OBJS_DIR), $(subst .c,.o,$(SRCS)))
+
+DEP = $(addsuffix .d, $(basename $(OBJS)))
+
+#----------------------------------->COMANDS<----------------------------------#
 CFLAGS = -Wall -Wextra -Werror
-CFILES = get_next_line.c get_next_line_utils.c
-OFILES = $(CFILES:.c=.o)
-DFILES = $(CFILES:.c=.d)
+RM = rm -f
+MDP = mkdir -p
+AR = ar rcs
+INCLUDE = -I ./
 
-all: $(NAME)
+#------------------------------------>RULES<-----------------------------------#
+$(OBJS_DIR)%.o: %.c Makefile
+	@$(MDP) $(dir $@)
+	@printf "$(PINK)      \rCompiling: $(YELLOW)$<...$(DEF_COLOR)      \r"
+	@$(CC) -MT $@ $(CFLAGS) -MMD -MP $(INCLUDE) -c $< -o $@
 
-$(NAME): $(OFILES)
-	@ar rcs $(NAME) $(OFILES)
+all			: 
+	@echo ""
+	@$(MAKE) $(NAME)
 
-$(OFILES): %.o: %.c Makefile
-	$(CC) $(CFLAGS) -MMD -MP -c -o $@ $<
+$(NAME)		:	$(OBJS)
+	@$(AR) $(NAME) $(OBJS)
+	@printf "\n$(GREEN)LIBRARY: '$(subst .a,,$@)' has been created.$(DEF_COLOR)\n"
 
--include $(DFILES)
+#$(NAME)		:
+#	@echo "$(YELLOW)Nothing to be done for '$(subst .a,,$(NAME))'$(DEF_COLOR)"
 
 clean:
-	$(RM) $(OFILES) $(DFILES)
+	@$(RM) -r $(OBJS_DIR)
 
-fclean: clean
-	$(RM) $(NAME)
+fclean		:
+	@$(MAKE) clean
+	@$(RM) $(NAME)
+	@echo "$(RED)LIBRARY: '$(subst .a,,$(NAME))' has been removed.$(DEF_COLOR)"
 
-re: fclean all
+re			:
+	@$(MAKE) fclean
+	@$(MAKE) all
+	@echo "$(CIAN)LIBRARY: '$(subst .a,,$(NAME))' has been remake$(DEF_COLOR)"
+	@echo ""
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re bonus
+
+-include $(DEP)

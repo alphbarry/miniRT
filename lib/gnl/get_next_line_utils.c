@@ -14,10 +14,10 @@
 
 /* Comprueba si hay un \n en la lista actual. */
 
-int	found_newline(t_list *stash)
+int	found_newline(t_g_list *stash)
 {
 	int		i;
-	t_list	*current;
+	t_g_list	*current;
 
 	if (stash == NULL)
 		return (0);
@@ -34,9 +34,9 @@ int	found_newline(t_list *stash)
 
 /* Devuelve n puntero al ultimo nodo de nuestro stash */
 
-t_list	*ft_lst_get_last(t_list *stash)
+t_g_list	*ft_lst_get_last(t_g_list *stash)
 {
-	t_list	*current;
+	t_g_list	*current;
 
 	current = stash;
 	while (current && current->next)
@@ -46,7 +46,7 @@ t_list	*ft_lst_get_last(t_list *stash)
 
 /* Calcular el numero de chars en la linea actual incluyendo el \n */
 
-void	generate_line(char **line, t_list *stash)
+void	generate_line(char **line, t_g_list *stash)
 {
 	int	i;
 	int	len;
@@ -72,10 +72,10 @@ void	generate_line(char **line, t_list *stash)
 
 /* Free de stash. */
 
-void	free_stash(t_list **stash, char *buf, t_list *node)
+void	free_stash(t_g_list **stash, char *buf, t_g_list *node)
 {
-	t_list	*current;
-	t_list	*next;
+	t_g_list	*current;
+	t_g_list	*next;
 
 	if (stash && *stash)
 	{

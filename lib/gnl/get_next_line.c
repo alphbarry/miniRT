@@ -78,7 +78,7 @@ int	add_to_stash(t_g_list **stash, char *buf, int readed)
 	t_g_list	*last;
 	t_g_list	*new_node;
 
-	new_node = malloc(sizeof(t_list));
+	new_node = malloc(sizeof(t_g_list));
 	if (new_node == NULL)
 		return (free_stash(stash, buf, NULL), 0);
 	new_node->next = NULL;
@@ -136,7 +136,7 @@ int	clean_stash(t_g_list **stash, int j)
 	t_g_list	*clean_node;
 	int		i;
 
-	clean_node = malloc(sizeof(t_list));
+	clean_node = malloc(sizeof(t_g_list));
 	if (stash == NULL || clean_node == NULL)
 		return (free_stash(stash, NULL, clean_node), 0);
 	clean_node->next = NULL;

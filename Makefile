@@ -10,91 +10,94 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = miniRT
+#<--------------------------------->COLORS<----------------------------------->#
+DEF_COLOR	=	\033[1;99m
+WHITE_BOLD	=	\033[1m
+BLACK		=	\033[1;90m
+RED			=	\033[1;91m
+GREEN		=	\033[1;92m
+YELLOW		=	\033[1;93m
+BLUE		=	\033[1;94m
+PINK		=	\033[1;95m
+CIAN		=	\033[1;96m
 
-# Source files
-SRC_DIR = src
-SRC_FILES = main.c vector.c objects.c light.c parser.c
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+#<--------------------------------->NAME<------------------------------------>#
+NAME		=	FdF
 
-# Object files
-OBJ_DIR = obj
-OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
+#<-------------------------------->LIBRARY<---------------------------------->#
+LIBRARY		=	lib/
+LIB_A		=	lib/libft/libft.a lib/gnl/libgnl.a \
+				lib/mlx_linux/libmlx.a
+LIB_SEARCH	=	-L./lib/libft -L./lib/gnl -L./lib/mlx_linux
+MLXLIB		=	lib/mlx_linux/libmlx.a -lXext -lX11 -lm -lz
 
-# Header files
-INC_DIR = inc
-INCS = $(INC_DIR)/minirt.h
+#<-------------------------------->HEADERS<---------------------------------->#
+HEADER		=	./inc/
+GNL_H	    =   ./lib/gnl/
+LIBFT_H		=	./lib/libft/
+MLX_H		=	./lib/mlx_linux/
 
-# Compiler and flags
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
+#<--------------------------------->DIRS<------------------------------------>#
+SRC_DIR		=	src/
+OBJ_DIR		=	objects/
 
-# Determine OS for proper linking
-UNAME := $(shell uname)
+#<--------------------------------->FILES<---------------------------------->#
+FILES		=	main.c \
+				light.c \
+				objects.c \
+				parser.c \
+				vector.c \
 
-# MiniLibX location and flags
-MLX_DIR = lib/mlx_linux
-MLX_LIB = $(MLX_DIR)/libmlx.a
-MLX_INC = -I$(MLX_DIR)
+#<--------------------------------->SRCS<----------------------------------->#
+SRCS		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 
-# OS-specific flags
-ifeq ($(UNAME), Linux)
-    MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
-else ifeq ($(UNAME), Darwin)
-    MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
-else
-    $(error Unsupported operating system: $(UNAME))
-endif
+#<----------------------------->OBJS && DEPS<------------------------------->#
+OBJS		=	$(addprefix $(OBJ_DIR), $(subst .c,.o,$(FILES)))
+DEPS		=	$(subst .o,.d,$(OBJS))
 
-# GNL add
-SRC_GNL_DIR = lib/gnl
-SRC_GNL = get_next_line.c get_next_line_utils.c
-SRCS_GNL = $(addprefix $(SRC_GNL_DIR)/, $(SRC_GNL))
-OBJS_GNL = $(addprefix $(OBJ_DIR)/, $(SRC_GNL:.c=.o))
+#<-------------------------------->COMANDS<---------------------------------->#
+INCLUDE		=	-I$(HEADER) -I$(PRINTF_H) -I$(LIBFT_H) -I$(MLX_H)
+RM			=	rm -rf
+MKD			=	mkdir -p
+MK			=	Makefile
+CFLAGS		=	-Wall -Wextra -Werror -O3# -fsanitize=address
+MKFLAGS		=	--no-print-directory
 
-# Rules
-all: $(OBJ_DIR) $(NAME)
+#<--------------------------------->RULES<----------------------------------->#
+$(OBJ_DIR)%.o	:$(SRC_DIR)%.c $(LIB_A) $(MK)
+	@$(MKD) $(dir $@)
+	@printf "$(PINK)    \rCompiling: $(YELLOW)$(notdir $<)...$(DEF_COLOR)       \r"
+	@$(CC) -MT $@ $(CFLAGS) -MMD -MP $(INCLUDE) -c $< -o $@
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+all				:
+	@$(MAKE) $(MKFLAGS) -C $(LIBRARY)
+	@$(MAKE) $(MKFLAGS) $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCS)
-	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_GNL_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME)			:	$(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIB_A) $(MLXLIB) -o $@
+	@echo "\n$(GREEN)FdF has been compiled$(DEF_COLOR)"
 
-$(NAME): $(OBJS) $(OBJS_GNL)
-	$(CC) $(CFLAGS) $(OBJS) $(OBJS_GNL) $(MLX_FLAGS) -o $(NAME)
+clean			:
+	@$(MAKE) $(MKFLAGS) clean -C $(LIBRARY)
+	@$(RM) $(OBJ_DIR) $(B_OBJ_DIR)
+	@echo ""
+	@echo "$(RED)All OBJS && DEPS has been removed$(DEF_COLOR)"
+	@echo ""
 
-clean:
-	rm -rf $(OBJ_DIR)
+fclean			:
+	@$(MAKE) $(MKFLAGS) clean
+	@$(MAKE) $(MKFLAGS) fclean -C $(LIBRARY)
+	@$(RM) $(NAME) $(B_NAME)
+	@echo ""
+	@echo "$(RED)Program has been removed$(DEF_COLOR)"
 
-fclean: clean
-	rm -f $(NAME)
+re				:
+	@$(MAKE) $(MKFLAGS) fclean
+	@$(MAKE) $(MKFLAGS) all
+	@echo ""
+	@echo "$(CIAN)FdF has been recompiled$(DEF_COLOR)"
 
-re: fclean all
+.PHONY			: all clean fclean re
 
-# Install MiniLibX (Linux)
-install_mlx_linux:
-	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR)
-	make -C $(MLX_DIR)
-
-# Install MiniLibX (macOS)
-install_mlx_macos:
-	git clone https://github.com/pbondoer/MinilibX.git $(MLX_DIR)
-	make -C $(MLX_DIR)
-
-# Create the get_next_line directory and files
-setup_gnl:
-	mkdir -p $(SRC_GNL_DIR)
-	touch $(SRC_GNL_DIR)/get_next_line.c
-	touch $(SRC_GNL_DIR)/get_next_line_utils.c
-	touch $(SRC_GNL_DIR)/get_next_line.h
-
-# Run the program with a scene file
-run: all
-	./$(NAME) scenes/basic.rt
-
-.PHONY: all clean fclean re install_mlx_linux install_mlx_macos setup_gnl run
-
+-include		$(DEPS)
