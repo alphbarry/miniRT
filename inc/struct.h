@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:20:22 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/24 19:53:37 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/04/24 21:40:01 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,12 @@ typedef struct s_light
 {
 	t_vector	position;
 	double		intensity;
+	t_color		color;
 }	t_light;
 
 typedef struct s_ambient
 {
-	double		intensity;
+	double		ratio;
 	t_color		color;
 }	t_ambient;
 
