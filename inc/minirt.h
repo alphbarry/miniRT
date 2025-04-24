@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/04/24 20:11:28 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:50:42 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 int	ft_error(char *message);
 
 int	ft_init_mlx(t_mlx *mlx);
+
+void	free_split(char **split);
 
 #endif
 
