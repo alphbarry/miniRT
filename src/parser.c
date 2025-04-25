@@ -6,8 +6,14 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:06:09 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/24 20:06:15 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/04/25 20:21:23 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/minirt.h"
 
+void	parse_error(char *msg, char *value)
+{
+	printf("Error: %s -> '%s'\n", msg, value);
+	exit(EXIT_FAILURE);
+}

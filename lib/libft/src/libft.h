@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 18:08:16 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/13 22:15:01 by alpha            ###   ########.fr       */
+/*   Updated: 2025/04/25 20:28:38 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 char				*ft_strnstr(const char *h, const char *n, size_t len);
-int					ft_atoi(const char *str);
+int					ft_atoi(char *str);
 void				*ft_calloc(size_t o, size_t size);
 char				*ft_strdup(const char *s);
 char				*ft_strtrim(char const *s1, char const *set);
@@ -55,6 +55,7 @@ void				ft_putnbr_fd(int n, int fd);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 size_t				ft_strslen(char **s);
+float				ft_atoif(char *str);
 
 /*BONUS*/
 

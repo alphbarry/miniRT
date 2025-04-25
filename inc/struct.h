@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:20:22 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/24 21:40:01 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/04/25 19:57:30 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef  struct s_mlx
 
 typedef struct s_vector
 {
-	double	x;
-	double	y;
-	double	z;
+	float	x;
+	float	y;
+	float	z;
 }	t_vector;
 
 typedef struct  s_color
@@ -53,13 +53,13 @@ typedef struct s_camara
 {
 	t_vector	position;
 	t_vector	tridimensional;
-	double		fov;
+	float		fov;
 }	t_camera;
 
 typedef struct s_sphere
 {
 	t_vector	center;
-	double		radius;
+	float		radius;
 	t_color		color;
 }	t_sphere;
 
@@ -74,21 +74,21 @@ typedef struct s_cylinder
 {
 	t_vector	center;
 	t_vector	tridimensional;
-	double		radius;
-	double		height;
+	float		radius;
+	float		height;
 	t_color		color;
 }	t_cylinder;
 
 typedef struct s_light
 {
 	t_vector	position;
-	double		intensity;
+	float		intensity;
 	t_color		color;
 }	t_light;
 
 typedef struct s_ambient
 {
-	double		ratio;
+	float		ratio;
 	t_color		color;
 }	t_ambient;
 

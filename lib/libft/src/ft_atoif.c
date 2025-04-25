@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoif.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
+/*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 13:24:37 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/25 20:30:11 by alphbarr         ###   ########.fr       */
+/*   Created: 2025/04/25 19:11:56 by alphbarr          #+#    #+#             */
+/*   Updated: 2025/04/25 20:26:57 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 #include "../../../inc/minirt.h"
 
-int	ft_atoi(char *str)
+float	ft_atoif(char *str)
 {
 	size_t	i;
 	int		sign;
-	int		result;
+	float	result;
+	float	decimal_factor;
 
 	if (!str || !*str)
 		parse_error("NULL STRING", str);
 	i = 0;
 	sign = 1;
 	result = 0;
-
+	decimal_factor = 0.1f;
 	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
 		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
 		i++;
@@ -40,8 +40,18 @@ int	ft_atoi(char *str)
 		parse_error("Invalid number", str);
 	while (str[i] >= '0' && str[i] <= '9')
 		result = (result * 10) + (str[i++] - '0');
+	if (str[i] == '.')
+	{
+		i++;
+		if (str[i] < '0' || str[i] > '9')
+			parse_error("Number waited after point", str);
+		while (str[i] >= '0' && str[i] <= '9')
+		{
+			result += (str[i++] - '0') * decimal_factor;
+			decimal_factor *= 0.1f;
+		}
+	}
 	if (str[i] != '\0' && str[i] != ' ' && str[i] != '\n')
 		parse_error("Invalid caracter after number", str);
 	return (result * sign);
 }
-

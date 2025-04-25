@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/04/24 20:50:42 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/04/25 20:58:50 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,30 @@
 # define WIDTH 800
 # define HEIGHT 600
 
+int	read_file(char *file);
+
 int	ft_error(char *message);
 
 int	ft_init_mlx(t_mlx *mlx);
 
 void	free_split(char **split);
+
+void	parse_error(char *msg, char *value);
+
+//inits
+void init_vector(t_vector *v);
+void init_color(t_color *c);
+void init_ray(t_ray *r);
+void init_camera(t_camera *cam);
+void init_sphere(t_sphere *sp);
+void init_plane(t_plane *pl);
+void init_cylinder(t_cylinder *cy);
+void init_light(t_light *light);
+void init_ambient(t_ambient *ambient);
+void init_scene(t_scene *scene);
+void init_mlx(t_mlx *mlx);
+void init_data(t_data *data);
+
 
 #endif
 

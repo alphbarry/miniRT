@@ -6,7 +6,7 @@
 #    By: alpha <alpha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 19:37:41 by alpha             #+#    #+#              #
-#    Updated: 2025/04/21 20:26:18 by alpha            ###   ########.fr        #
+#    Updated: 2025/04/25 21:00:56 by alphbarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,11 +43,10 @@ OBJ_DIR		=	objects/
 
 #<--------------------------------->FILES<---------------------------------->#
 FILES		=	main.c \
-				light.c \
-				objects.c \
 				parser.c \
-				vector.c \
-
+				read_scene.c \
+				init_params.c \
+				free.c \
 #<--------------------------------->SRCS<----------------------------------->#
 SRCS		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 
@@ -60,7 +59,7 @@ INCLUDE		=	-I$(HEADER) -I$(PRINTF_H) -I$(LIBFT_H) -I$(MLX_H)
 RM			=	rm -rf
 MKD			=	mkdir -p
 MK			=	Makefile
-CFLAGS		=	-Wall -Wextra -Werror -O3# -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror #-fsanitize=address
 MKFLAGS		=	--no-print-directory
 
 #<--------------------------------->RULES<----------------------------------->#
