@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/04/25 20:58:50 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/04/26 21:07:12 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 
 int	read_file(char *file);
 
-int	ft_error(char *message);
+void	ft_error(char *message);
 
-int	ft_init_mlx(t_mlx *mlx);
+void	ft_init_mlx(t_mlx *mlx);
 
 void	free_split(char **split);
 
-void	parse_error(char *msg, char *value);
+int	parse_error(char *msg, char *value);
 
 //inits
 void init_vector(t_vector *v);
