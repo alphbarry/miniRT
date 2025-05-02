@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/04/26 21:07:12 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/04/27 21:55:18 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 # include "../lib/mlx_linux/mlx.h"
 # include "../lib/libft/src/libft.h"
 # include "../lib/gnl/get_next_line.h"
-
-# define WIDTH 800
-# define HEIGHT 600
 
 int	read_file(char *file);
 
@@ -48,6 +45,7 @@ void init_scene(t_scene *scene);
 void init_mlx(t_mlx *mlx);
 void init_data(t_data *data);
 
+int	ft_close_window(t_mlx *mlx);
 
 #endif
 

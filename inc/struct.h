@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:20:22 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/25 19:57:30 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/04/27 21:54:24 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,28 @@
 
 # include <math.h>
 # include <fcntl.h>
+
+# define KEY_ESC 65307
+# define KEY_8 65431
+# define KEY_8T 56
+# define KEY_2 65433
+# define KEY_2T 50
+# define KEY_4 65430
+# define KEY_4T 52
+# define KEY_6 65432
+# define KEY_6T 54
+# define KEY_PLUS 65451
+# define KEY_PLUST 43
+# define KEY_MINUS 65453
+# define KEY_MINUST 45
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_5 65437
+# define KEY_5T 53
+# define KEY_SPACE 32
+# define KEY_F 102
 
 typedef  struct s_mlx
 {
@@ -25,6 +47,10 @@ typedef  struct s_mlx
 	int		bpp;
 	int		size_line;
 	int		endian;
+	int		win_x;
+	int		win_y;
+	int		shift_x;
+	int		shift_y;
 }	t_mlx;
 
 typedef struct s_vector

@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 20:40:17 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/25 20:43:31 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/04/27 21:37:45 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,6 @@ void init_scene(t_scene *scene)
     scene->light_count = 0;
 }
 
-void init_mlx(t_mlx *mlx)
-{
-    mlx->mlx_ptr = NULL;
-    mlx->win_ptr = NULL;
-    mlx->img_ptr = NULL;
-    mlx->img_data = NULL;
-    mlx->bpp = 0;
-    mlx->size_line = 0;
-    mlx->endian = 0;
-}
 
 void init_data(t_data *data)
 {

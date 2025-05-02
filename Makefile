@@ -6,7 +6,7 @@
 #    By: alpha <alpha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 19:37:41 by alpha             #+#    #+#              #
-#    Updated: 2025/04/25 21:00:56 by alphbarr         ###   ########.fr        #
+#    Updated: 2025/04/27 21:53:15 by alphbarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,8 @@ FILES		=	main.c \
 				read_scene.c \
 				init_params.c \
 				free.c \
+				mlx.c \
+				keys.c \
 #<--------------------------------->SRCS<----------------------------------->#
 SRCS		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 
