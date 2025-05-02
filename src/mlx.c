@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:06:03 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/27 21:42:46 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:52:22 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,14 @@ int	ft_close_window(t_mlx *mlx)
 	exit(0);
 }
 
-void	full_screen(t_mlx *mlx)
+void	print_menu(t_mlx *param)
 {
-	int	old_x;
-	int	old_y;
+	char	*menu;
 
-	if (mlx->win_x != 2560)
-	{
-		old_x = mlx->win_x;
-		old_y = mlx->win_y;
-	}
-	if (mlx->win_x == 2560)
-	{
-		mlx->win_x = old_x;
-		mlx->win_y = old_y;
-	}
-	else
-	{
-		mlx->win_x = 2560;
-		mlx->win_y = 1440;
-	}
+	menu = "up, down, left, right: move picture";
+	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 5, 0x03fc35, menu);
+	menu = "5, space: 3d/2d mode; +, -: zoom";
+	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 20, 0x03fc35, menu);
+	menu = "8, 2: z-scale; 4, 6: rotation";
+	mlx_string_put(param->mlx_ptr, param->win_ptr, 10, 35, 0x03fc35, menu);
 }
