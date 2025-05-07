@@ -6,35 +6,68 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:05:52 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/24 20:55:17 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:54:36 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/minirt.h"
 
-int	parse_color(char *str, t_color *color)
+int	color_to_int(t_color color)
 {
-	int		i;
-	char	**split;
-
-	i = 0;
-	split = ft_split(str, ',');
-	if (!split || !split[0] || !split[1] || !split[2])
-		return (1);
-	while (split[i])
-	{
-		if (i > 2 || !ft_isdigit(split[i][0]))
-			return (1);
-		i++;
-	}
-	if (i != 3)
-		return (1);
-	color->r = ft_atoi(split[0]);
-	color->g = ft_atoi(split[1]);
-	color->b = ft_atoi(split[2]);
-	if (color->r < 0 || color->r > 255 || color->g < 0 || color->g > 255
-		|| color->b < 0 || color->b > 255)
-		return (free_split(split), 1);
-	free_split(split);
-	return (0);
+	return ((color.r & 0xFF) << 16 | (color.g & 0xFF) << 8 | (color.b & 0xFF));
 }
+
+void	put_pixel(t_mlx *mlx, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x < 0 || x >= mlx->win_x || y < 0 || y >= mlx->win_y)
+		return ;
+	dst = mlx->img_data + (y * mlx->size_line + x * (mlx->bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
+int	apply_ratio_to_color(t_color color, float ratio)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = (int)(color.r * ratio);
+	g = (int)(color.g * ratio);
+	b = (int)(color.b * ratio);
+
+	if (r > 255)
+		r = 255;
+	if (g > 255)
+		g = 255;
+	if (b > 255)
+		b = 255;
+	return (r << 16 | g << 8 | b);
+}
+
+void fill_background(t_mlx *mlx, t_scene *scene)
+{
+	int x;
+	int y;
+	int color;
+
+	// Aplica el ratio de la luz ambiente al color
+	color = apply_ratio_to_color(scene->ambient.color, scene->ambient.ratio);
+
+	y = 0;
+	while (y < mlx->win_y)
+	{
+		x = 0;
+		while (x < mlx->win_x)
+		{
+			put_pixel(mlx, x, y, color);
+			x++;
+		}
+		y++;
+	}
+
+	// Muestra la imagen generada en la ventana
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
+}
+

@@ -6,7 +6,7 @@
 #    By: alpha <alpha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 19:37:41 by alpha             #+#    #+#              #
-#    Updated: 2025/04/27 21:53:15 by alphbarr         ###   ########.fr        #
+#    Updated: 2025/05/07 20:04:09 by alphbarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,8 @@ FILES		=	main.c \
 				free.c \
 				mlx.c \
 				keys.c \
+				colors.c \
+				vector.c \
 #<--------------------------------->SRCS<----------------------------------->#
 SRCS		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 

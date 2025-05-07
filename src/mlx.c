@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:06:03 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/02 19:52:22 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:09:49 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ void	ft_init_mlx(t_mlx *mlx)
 		free(mlx->mlx_ptr);
 		ft_error("Failed to get image data address");
 	}
+	printf("img_data: %p\n", mlx->img_data);
+	printf("bpp: %d\n", mlx->bpp);
+	printf("size_line: %d\n", mlx->size_line);
 }
 
 int	ft_close_window(t_mlx *mlx)
