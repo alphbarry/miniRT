@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/05/07 20:15:05 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/08 20:59:44 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,19 @@ void	fill_background(t_mlx *mlx, t_scene *scene);
 int		color_to_int(t_color color);
 void		put_pixel(t_mlx *mlx, int x, int y, int color);
 
+//vectors
+t_vector	vector_add(t_vector a, t_vector b);
+t_vector	vector_sub(t_vector a, t_vector b);
+t_vector	vector_scale(t_vector a, float b);
+t_vector	vector_normalize(t_vector a);
+float		vector_dot(t_vector a, t_vector b);
+t_vector	vector_cross(t_vector a, t_vector b);
+t_vector	get_ray_direction(t_camera *camera, t_mlx *mlx, float x, float y);
+void		set_pixel(t_mlx *mlx, t_color color, int x, int y);
+int			intersect_sphere(t_vector origin, t_vector direction, t_sphere sphere, float *t);
+
 //rendering
-void	draw_sphere(t_mlx *mlx, t_sphere *sphere);
+void	draw_sphere(t_mlx *mlx, t_sphere sphere, t_camera camera);
 void	draw_scene(t_mlx *mlx, t_scene *scene);
 #endif
 
