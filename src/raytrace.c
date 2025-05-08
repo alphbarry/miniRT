@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:06:17 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/08 20:57:59 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/08 23:47:59 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,18 @@ void	draw_sphere(t_mlx *mlx, t_sphere sphere, t_camera camera)
 		}
 		y++;
 	}
+}
+
+void	draw_scene(t_mlx *mlx, t_scene *scene)
+{
+	int	i;
+
+	fill_background(mlx, scene);
+	i = 0;
+	while (i < scene->sphere_count)
+	{
+		draw_sphere(mlx, scene->spheres[i], scene->camera);
+		i++;
+	}
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
 }

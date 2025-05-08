@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:05:52 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/07 19:54:36 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/08 23:45:30 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,3 @@ void fill_background(t_mlx *mlx, t_scene *scene)
 	// Muestra la imagen generada en la ventana
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
 }
-

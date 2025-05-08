@@ -10,6 +10,7 @@ t_vector	vector_add(t_vector a, t_vector b)
 	return (result);
 }
 
+//
 t_vector	vector_sub(t_vector a, t_vector b)
 {
 	t_vector	result;
@@ -29,7 +30,7 @@ t_vector	vector_scale(t_vector a, float scalar)
 	result.z = a.z * scalar;
 	return (result);
 }
-
+//this funciun is util for calculate angles, projection, verificate if two  vectors are aligned
 float	vector_dot(t_vector a, t_vector b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
@@ -40,7 +41,7 @@ t_vector	vector_normalize(t_vector a)
 	float	length;
 	t_vector	result;
 
-	length = sqrtf(vector_dot(a, a));
+	length = sqrtf(vector_dot(a, a));//formule for length of vector "sqrt(x^2 + y^2 + z^2)"
 	if (length == 0)
 		return (a);
 	result.x = a.x / length;
