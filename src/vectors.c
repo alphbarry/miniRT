@@ -30,7 +30,7 @@ t_vector	vector_scale(t_vector a, float scalar)
 	result.z = a.z * scalar;
 	return (result);
 }
-//this funciun is util for calculate angles, projection, verificate if two  vectors are aligned
+//this function is util for calculate angles, projection, verificate if two  vectors are aligned
 float	vector_dot(t_vector a, t_vector b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
@@ -66,15 +66,15 @@ t_vector	get_ray_direction(t_camera *camera, t_mlx *mlx, float x, float y)
 	t_vector	basis[3]; // 0 = forward, 1 = right, 2 = up
 	float		factor[3]; // factor[0] = aspect, [1] = fov_scale, [2] = dummy px/py reuse
 
-	factor[0] = (float)mlx->win_x / (float)mlx->win_y;
-	factor[1] = tanf(camera->fov * 0.5f * M_PI / 180.0f);
+	factor[0] = (float)mlx->win_x / (float)mlx->win_y;// aspect ratio
+	factor[1] = tanf(camera->fov * 0.5f * M_PI / 180.0f);// fov scale
 
-	basis[0] = vector_normalize(camera->tridimensional);
-	basis[2] = (t_vector){0.0f, 1.0f, 0.0f};
-	if (fabs(vector_dot(basis[0], basis[2])) > 0.999f)
-		basis[2] = (t_vector){0.0f, 0.0f, 1.0f};
-	basis[1] = vector_normalize(vector_cross(basis[2], basis[0]));
-	basis[2] = vector_cross(basis[0], basis[1]);
+	basis[0] = vector_normalize(camera->tridimensional);// forward
+	basis[2] = (t_vector){0.0f, 1.0f, 0.0f};// up
+	if (fabs(vector_dot(basis[0], basis[2])) > 0.999f)// if forward is aligned with up
+		basis[2] = (t_vector){0.0f, 0.0f, 1.0f};// up
+	basis[1] = vector_normalize(vector_cross(basis[2], basis[0]));// right
+	basis[2] = vector_cross(basis[0], basis[1]);// up
 
 	// px
 	factor[2] = (2.0f * ((x + 0.5f) / mlx->win_x) - 1.0f) * factor[0] * factor[1];
@@ -97,21 +97,22 @@ void	set_pixel(t_mlx *mlx, t_color color, int x, int y)
 	mlx->img_data[i + 2] = color.r;
 }
 
+//formule for intersection of ray and sphere: [ t = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 int	intersect_sphere(t_vector origin, t_vector direction, t_sphere sphere, float *t)
 {
-	t_vector	oc;
-	float		a;
-	float		b;
-	float		c;
-	float		discriminant;
+	t_vector	oc;// oc is the vector from the ray origin to the sphere center
+	float		a;// a is the dot product of the direction vector with itself
+	float		b;// b is the dot product of the oc vector with the direction vector
+	float		c;// c is the dot product of the oc vector with itself minus the square of the sphere's radius
+	float		discriminant;// discriminant is b^2 - 4ac
 
 	oc = vector_sub(origin, sphere.center);
 	a = vector_dot(direction, direction);
 	b = 2.0f * vector_dot(oc, direction);
 	c = vector_dot(oc, oc) - (sphere.radius * sphere.radius);
-	discriminant = b * b - 4 * a * c;
+	discriminant = ((b * b) - (4 * a * c));
 	if (discriminant < 0)
 		return (0);
-	*t = (-b - sqrtf(discriminant)) / (2.0f * a);
+	*t = (-b - sqrtf(discriminant)) / (2.0f * a);// t = (-b ± sqrt(discriminant)) / 2a
 	return (0);
 }
