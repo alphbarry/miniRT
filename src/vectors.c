@@ -114,5 +114,5 @@ int	intersect_sphere(t_vector origin, t_vector direction, t_sphere sphere, float
 	if (discriminant < 0)
 		return (0);
 	*t = (-b - sqrtf(discriminant)) / (2.0f * a);// t = (-b ± sqrt(discriminant)) / 2a
-	return (0);
+	return (1);
 }
