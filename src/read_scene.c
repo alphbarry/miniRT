@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:13:50 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/09 21:42:05 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/11 02:42:30 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,9 +230,9 @@ void	get_plane(t_scene *scene, char *line)
 		trid = ft_split(split[2], ',');
 		if (!trid || !trid[0] || !trid[1] || !trid[2])
 			parse_error("Invalid plane normal", split[2]);
-		scene->planes->tridimensional.x = ft_atoif(trid[0]);
-		scene->planes->tridimensional.y = ft_atoif(trid[1]);
-		scene->planes->tridimensional.z = ft_atoif(trid[2]);
+		scene->planes->normal.x = ft_atoif(trid[0]);
+		scene->planes->normal.y = ft_atoif(trid[1]);
+		scene->planes->normal.z = ft_atoif(trid[2]);
 		free_split(trid);
 	}
 	else
@@ -287,9 +287,9 @@ void	get_cylinder(t_scene *scene, char *line)
 		trid = ft_split(split[2], ',');
 		if (!trid || !trid[0] || !trid[1] || !trid[2])
 			parse_error("Invalid cylinder orientation", split[2]);
-		scene->cylinders->tridimensional.x = ft_atoif(trid[0]);
-		scene->cylinders->tridimensional.y = ft_atoif(trid[1]);
-		scene->cylinders->tridimensional.z = ft_atoif(trid[2]);
+		scene->cylinders->normal.x = ft_atoif(trid[0]);
+		scene->cylinders->normal.y = ft_atoif(trid[1]);
+		scene->cylinders->normal.z = ft_atoif(trid[2]);
 		free_split(trid);
 	}
 	else

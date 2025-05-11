@@ -116,3 +116,32 @@ int	intersect_sphere(t_vector origin, t_vector direction, t_sphere sphere, float
 	*t = (-b - sqrtf(discriminant)) / (2.0f * a);// t = (-b ± sqrt(discriminant)) / 2a
 	return (1);
 }
+
+int	intersect_plane(t_vector origin, t_vector direction, t_plane plane, float *t)
+{
+	float	denominator;// denominator is the dot product of the plane normal and the ray direction
+	float	numerator;// numerator is the dot product of the plane normal and the vector from the ray origin to the plane point
+
+	denominator = vector_dot(plane.normal, direction);// the formula for the denominator is N * D
+	if (fabs(denominator) < 1e-6)
+		return (0);// the ray is parallel to the plane
+	numerator = vector_dot(vector_sub(plane.point, origin), plane.normal);//the formule for the numerator is (P - O) * N
+	*t = numerator / denominator;//t = (P - O) * N / (N * D)
+	if (*t < 0)
+		return (0);// the intersection is behind the ray origin
+	return (1);
+}
+
+int	intersect_cylinder(t_vector origin, t_vector direction, t_cylinder cylinder, float *t)
+{
+	t_vector	oc;
+	float		a;
+	float		b;
+	float		v;
+
+	oc = vector_sub(origin, cylinder.center);
+//	v = vector_normalize
+//	a = vector_sub()
+	*t = 0;
+	return (0);
+}

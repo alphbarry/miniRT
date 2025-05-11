@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/05/08 20:59:44 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/11 02:33:09 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_vector	vector_cross(t_vector a, t_vector b);
 t_vector	get_ray_direction(t_camera *camera, t_mlx *mlx, float x, float y);
 void		set_pixel(t_mlx *mlx, t_color color, int x, int y);
 int			intersect_sphere(t_vector origin, t_vector direction, t_sphere sphere, float *t);
+int			intersect_plane(t_vector origin, t_vector direction, t_plane plane, float *t);
 
 //rendering
 void	draw_sphere(t_mlx *mlx, t_sphere sphere, t_camera camera);
