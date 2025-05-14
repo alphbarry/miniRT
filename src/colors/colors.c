@@ -6,11 +6,11 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:05:52 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/08 23:45:30 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/14 15:32:22 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/minirt.h"
+# include "../../inc/minirt.h"
 
 int	color_to_int(t_color color)
 {

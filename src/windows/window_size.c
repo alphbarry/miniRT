@@ -6,11 +6,11 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 19:34:22 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/02 19:45:55 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:46:28 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 static int	check_window_size(int key, t_mlx *mlx)
 {

@@ -6,11 +6,11 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 20:40:17 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/27 21:37:45 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:32:52 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 void init_vector(t_vector *v)
 {
@@ -49,14 +49,14 @@ void init_sphere(t_sphere *sp)
 void init_plane(t_plane *pl)
 {
     init_vector(&pl->point);
-    init_vector(&pl->tridimensional);
+    init_vector(&pl->normal);
     init_color(&pl->color);
 }
 
 void init_cylinder(t_cylinder *cy)
 {
     init_vector(&cy->center);
-    init_vector(&cy->tridimensional);
+    init_vector(&cy->normal);
     cy->radius = 0.0f;
     cy->height = 0.0f;
     init_color(&cy->color);

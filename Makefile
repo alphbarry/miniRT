@@ -6,7 +6,7 @@
 #    By: alpha <alpha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 19:37:41 by alpha             #+#    #+#              #
-#    Updated: 2025/05/08 23:30:42 by alpha            ###   ########.fr        #
+#    Updated: 2025/05/14 16:58:39 by alpha            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,15 +43,24 @@ OBJ_DIR		=	objects/
 
 #<--------------------------------->FILES<---------------------------------->#
 FILES		=	main.c \
-				parser.c \
-				read_scene.c \
-				init_params.c \
-				free.c \
-				mlx.c \
-				keys.c \
-				colors.c \
-				vectors.c \
-				raytrace.c \
+				parser/parser_ambient.c \
+				parser/parser_camera.c \
+				parser/parser_light.c \
+				parser/parser_cylinder.c \
+				parser/parser_plane.c \
+				parser/parser_sphere.c \
+				parser/read_scene.c \
+				parser/init_params.c \
+				utils/free.c \
+				window/mlx.c \
+				window/keys.c \
+				window/window_size.c \
+				colors/colors.c \
+				raytracing/vectors.c \
+				raytracing/raytrace.c \
+				figures/cylinders.c \
+				figures/planes.c \
+				figures/spheres.c
 #<--------------------------------->SRCS<----------------------------------->#
 SRCS		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 

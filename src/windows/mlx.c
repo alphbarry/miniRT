@@ -6,11 +6,11 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:06:03 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/09 21:29:10 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:46:20 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 void init_mlx(t_mlx *mlx)
 {

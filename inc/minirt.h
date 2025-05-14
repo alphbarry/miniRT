@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/05/11 02:33:09 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/14 16:54:43 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,16 @@
 # include "../lib/libft/src/libft.h"
 # include "../lib/gnl/get_next_line.h"
 
+int	key_hook(int keycode, t_scene *scene, t_mlx *mlx);
 
-
-int	read_file(char *file, t_scene *scene, t_mlx *mlx);
+//parse
+int		read_file(char *file, t_scene *scene, t_mlx *mlx);
+void	get_ambient(t_scene *scene, char *line);
+void	get_camera(t_scene *scene, char *line);
+void	get_light(t_scene *scene, char *line);
+void	get_sphere(t_scene *scene, char *line);
+void	get_cylinder(t_scene *scene, char *line);
+void	get_plane(t_scene *scene, char *line);
 
 void	ft_error(char *message);
 
@@ -74,6 +81,8 @@ int			intersect_plane(t_vector origin, t_vector direction, t_plane plane, float 
 
 //rendering
 void	draw_sphere(t_mlx *mlx, t_sphere sphere, t_camera camera);
+void	draw_plane(t_mlx *mlx, t_plane plane, t_camera camera);
 void	draw_scene(t_mlx *mlx, t_scene *scene);
+
 #endif
 

@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 20:06:09 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/26 20:10:04 by alphbarr         ###   ########.fr       */
+/*   Created: 2025/04/24 20:50:04 by alphbarr          #+#    #+#             */
+/*   Updated: 2025/05/14 15:46:00 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
 
-int	parse_error(char *msg, char *value)
+void	free_split(char **split)
 {
-	printf("Error: %s -> '%s'\n", msg, value);
-	exit (EXIT_FAILURE);
+	int	i;
+
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }
