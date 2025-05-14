@@ -20,26 +20,30 @@ int	intersect_sphere(t_vector origin, t_vector direction, t_sphere sphere, float
 	return (1);
 }
 
-void	draw_sphere(t_mlx *mlx, t_sphere sphere, t_camera camera)
+void	draw_sphere(t_mlx *mlx, t_scene scene, t_sphere sphere)
 {
-	int		x;
-	int		y;
-	float	t;
+	int			x;
+	int			y;
+	float		t;
 	t_vector	ray_direction;
 	t_vector	origin;
-	t_color	color;
+	t_color		color;
+	t_vector	hit_point;
+	t_vector	normal;
 
-	origin = camera.position;
+	origin = scene.camera.position;
 	y = 0;
 	while (y < mlx->win_y)
 	{
 		x = 0;
 		while (x < mlx->win_x)
 		{
-			ray_direction = get_ray_direction(&camera, mlx, x, y);
+			ray_direction = get_ray_direction(&scene.camera, mlx, x, y);
 			if (intersect_sphere(origin, ray_direction, sphere, &t))
 			{
-				color = sphere.color;
+				hit_point = vector_add(origin, vector_scale(ray_direction, t));
+				normal = vector_normalize(vector_sub(hit_point, sphere.center));
+				color = compute_lighting(hit_point, normal, scene.lights, sphere.color);
 				set_pixel(mlx, color, x, y);
 			}
 			x++;
