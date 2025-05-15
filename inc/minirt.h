@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/05/14 17:10:45 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/15 20:30:02 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,11 @@ int			intersect_sphere(t_vector origin, t_vector direction, t_sphere sphere, flo
 int			intersect_plane(t_vector origin, t_vector direction, t_plane plane, float *t);
 
 //environment
-t_color	compute_lighting(t_vector point, t_vector normal, t_light light, t_color object_color);
+t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_color object_color);
 
 //rendering
-void	draw_sphere(t_mlx *mlx, t_sphere sphere, t_camera camera);
-void	draw_plane(t_mlx *mlx, t_plane plane, t_camera camera);
+void	draw_sphere(t_mlx *mlx, t_scene *scene, t_sphere sphere);
+void	draw_plane(t_mlx *mlx, t_scene *scene, t_plane plane);
 void	draw_scene(t_mlx *mlx, t_scene *scene);
 
 #endif

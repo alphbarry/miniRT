@@ -6,32 +6,45 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:05:57 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/14 17:09:13 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/15 19:42:20 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-t_color	compute_lighting(t_vector point, t_vector normal, t_light light, t_color object_color)
+t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_color object_color)
 {
+	t_color	final_color;
+	int		i;
+	float	diffuse;
 	t_vector	light_dir;
-	float		diffuse;
-	t_color		final;
 
-	light_dir = vector_normalize(vector_sub(light.position, point));
-	diffuse = vector_dot(normal, light_dir);
-	if (diffuse < 0)
-		diffuse = 0;
-	diffuse *= light.intensity;
+	// Aplica luz ambiental
+	final_color.r = object_color.r * scene->ambient.ratio * (scene->ambient.color.r / 255.0);
+	final_color.g = object_color.g * scene->ambient.ratio * (scene->ambient.color.g / 255.0);
+	final_color.b = object_color.b * scene->ambient.ratio * (scene->ambient.color.b / 255.0);
 
-	final.r = object_color.r * diffuse * (light.color.r / 255.0);
-	final.g = object_color.g * diffuse * (light.color.g / 255.0);
-	final.b = object_color.b * diffuse * (light.color.b / 255.0);
+	// Para cada luz puntual
+	i = 0;
+	while (i < scene->light_count)
+	{
+		light_dir = vector_normalize(vector_sub(scene->lights[i].position, point));
+		diffuse = vector_dot(normal, light_dir);
+		if (diffuse > 0)
+		{
+			diffuse *= scene->lights[i].intensity;
+			final_color.r += object_color.r * diffuse * (scene->lights[i].color.r / 255.0);
+			final_color.g += object_color.g * diffuse * (scene->lights[i].color.g / 255.0);
+			final_color.b += object_color.b * diffuse * (scene->lights[i].color.b / 255.0);
+		}
+		i++;
+	}
 
-	// Clampear
-	final.r = fmin(final.r, 255);
-	final.g = fmin(final.g, 255);
-	final.b = fmin(final.b, 255);
+	// Clamp color
+	if (final_color.r > 255) final_color.r = 255;
+	if (final_color.g > 255) final_color.g = 255;
+	if (final_color.b > 255) final_color.b = 255;
 
-	return (final);
+	return (final_color);
 }
+

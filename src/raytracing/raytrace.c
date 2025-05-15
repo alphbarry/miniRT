@@ -45,13 +45,13 @@ void	draw_scene(t_mlx *mlx, t_scene *scene)
 	i = 0;
 	while (i < scene->sphere_count)
 	{
-		draw_sphere(mlx, scene->spheres[i], scene->camera);
+		draw_sphere(mlx, scene, scene->spheres[i]);
 		i++;
 	}
 	i = 0;
 	while (i < scene->plane_count)
 	{
-		draw_plane(mlx, scene->planes[i], scene->camera);
+		draw_plane(mlx, scene, scene->planes[i]);
 		i++;
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);

@@ -6,7 +6,7 @@
 #    By: alpha <alpha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 19:37:41 by alpha             #+#    #+#              #
-#    Updated: 2025/05/14 16:58:39 by alpha            ###   ########.fr        #
+#    Updated: 2025/05/15 20:23:37 by alphbarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,8 @@ FILES		=	main.c \
 				raytracing/raytrace.c \
 				figures/cylinders.c \
 				figures/planes.c \
-				figures/spheres.c
+				figures/spheres.c \
+				environment/light.c
 #<--------------------------------->SRCS<----------------------------------->#
 SRCS		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 
