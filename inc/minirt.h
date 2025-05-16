@@ -53,6 +53,9 @@ void		parse_light_position(t_light *light, char *pos_str);
 int		parse_light_intensity(t_light *light, char *intensity_str);
 int		parse_light_color(t_light *light, char *color_str);
 t_light	*set_light_properties(void);
+int     parse_camera_position(t_camera *camera, char *pos_str);
+int     parse_camera_orientation(t_camera *camera, char *orient_str);
+int     parse_camera_fov(t_camera *camera, char *fov_str);
 
 void	ft_error(char *message);
 

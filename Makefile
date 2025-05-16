@@ -45,6 +45,7 @@ OBJ_DIR		=	objects/
 FILES		=	main.c \
 				parser/parser_ambient.c \
 				parser/parser_camera.c \
+				parser/parser_camera_utils.c \
 				parser/parser_light.c \
 				parser/parser_light_utils.c \
 				parser/parser_cylinder.c \
