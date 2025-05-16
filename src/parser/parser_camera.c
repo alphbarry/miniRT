@@ -40,13 +40,13 @@ void	get_camera(t_scene *scene, char *line)
 		parse_error("Camera FOV missing", line);
 	if (scene->camera.fov < 0 || scene->camera.fov > 180)
 		parse_error("Camera FOV out of range", split[3]);
-	fprintf(stderr, "DEBUG: Parsed camera: pos(%.1f,%.1f,%.1f) dir(%.1f,%.1f,%.1f) fov(%.1f)\n",
+	/*fprintf(stderr, "DEBUG: Parsed camera: pos(%.1f,%.1f,%.1f) dir(%.1f,%.1f,%.1f) fov(%.1f)\n",
 		scene->camera.position.x,
 		scene->camera.position.y,
 		scene->camera.position.z,
 		scene->camera.tridimensional.x,
 		scene->camera.tridimensional.y,
 		scene->camera.tridimensional.z,
-		scene->camera.fov);
+		scene->camera.fov);*/
 	free_split(split);
 }

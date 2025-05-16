@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/05/15 20:30:02 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/16 19:45:16 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	ft_error(char *message);
 
 void	ft_init_mlx(t_mlx *mlx);
 
+//free
 void	free_split(char **split);
+void	free_scene(t_scene *scene);
 
 int	parse_error(char *msg, char *value);
 
@@ -79,6 +81,7 @@ t_vector	get_ray_direction(t_camera *camera, t_mlx *mlx, float x, float y);
 void		set_pixel(t_mlx *mlx, t_color color, int x, int y);
 int			intersect_sphere(t_vector origin, t_vector direction, t_sphere sphere, float *t);
 int			intersect_plane(t_vector origin, t_vector direction, t_plane plane, float *t);
+int			intersect_cylinder(t_vector origin, t_vector direction, t_cylinder cylinder, float *t);
 
 //environment
 t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_color object_color);

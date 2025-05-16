@@ -1,5 +1,6 @@
 #include "../../inc/minirt.h"
-
+#include <math.h>
+/*
 int	intersect_plane(t_vector origin, t_vector direction, t_plane plane, float *t)
 {
 	float	denominator;
@@ -39,11 +40,33 @@ int	intersect_plane(t_vector origin, t_vector direction, t_plane plane, float *t
 		vector_scale(normalized_normal, vector_dot(to_point, normalized_normal)));
 	
 	// If point is too far from center, reject the intersection
-	if (vector_length(to_point) > PLANE_SIZE)
+	if (fabs(to_point.x) > PLANE_SIZE || fabs(to_point.y) > PLANE_SIZE || fabs(to_point.z) > PLANE_SIZE)
 		return (0);
 		
 	return (1);
+}*/
+
+int	intersect_plane(t_vector origin, t_vector direction, t_plane plane, float *t)
+{
+	const float MIN_DIST = 0.001f;
+
+	t_vector normalized_normal = vector_normalize(plane.normal);
+	float denominator = vector_dot(normalized_normal, direction);
+
+	if (fabs(denominator) < MIN_DIST)
+		return (0);
+
+	t_vector point_to_origin = vector_sub(plane.point, origin);
+	float numerator = vector_dot(point_to_origin, normalized_normal);
+	*t = numerator / denominator;
+
+	if (*t < MIN_DIST)
+		return (0);
+
+	return (1);
 }
+
+
 
 void	draw_plane(t_mlx *mlx, t_scene *scene, t_plane plane)
 {

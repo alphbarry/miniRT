@@ -44,7 +44,7 @@ void	draw_scene(t_mlx *mlx, t_scene *scene)
     t_vector    ray_direction, origin;
     t_color     color;
     t_vector    hit_point, normal;
-
+/*
     fprintf(stderr, "\nDEBUG: Scene Configuration:\n");
     fprintf(stderr, "Camera: position(%.1f,%.1f,%.1f) direction(%.1f,%.1f,%.1f)\n",
         scene->camera.position.x, scene->camera.position.y, scene->camera.position.z,
@@ -67,13 +67,13 @@ void	draw_scene(t_mlx *mlx, t_scene *scene)
             scene->planes[i].normal.x, scene->planes[i].normal.y, scene->planes[i].normal.z);
         i++;
     }
-    fprintf(stderr, "\n");
+    fprintf(stderr, "\n");*/
 
     fill_background(mlx, scene);
     origin = scene->camera.position;
     
-    fprintf(stderr, "DEBUG: Starting unified raytracing with %d spheres and %d planes\n", 
-        scene->sphere_count, scene->plane_count);
+    //fprintf(stderr, "DEBUG: Starting unified raytracing with %d spheres and %d planes\n", 
+        //scene->sphere_count, scene->plane_count);
 
     y = 0;
     while (y < mlx->win_y)
@@ -117,6 +117,31 @@ void	draw_scene(t_mlx *mlx, t_scene *scene)
                 }
                 i++;
             }
+
+			// Check cylinders
+			// Check cylinders
+			i = 0;
+		while (i < scene->cylinder_count)
+		{
+			if (intersect_cylinder(origin, ray_direction, scene->cylinders[i], &t))
+			{
+				if (t < closest_t)
+				{
+					closest_t = t;
+					hit_point = vector_add(origin, vector_scale(ray_direction, t));
+	
+					// Cálculo de la normal
+					t_vector axis = vector_normalize(scene->cylinders[i].normal);
+					t_vector to_hit = vector_sub(hit_point, scene->cylinders[i].center);
+					float proj = vector_dot(to_hit, axis);
+					t_vector closest_axis_point = vector_add(scene->cylinders[i].center, vector_scale(axis, proj));
+					normal = vector_normalize(vector_sub(hit_point, closest_axis_point));
+					color = compute_lighting(scene, hit_point, normal, scene->cylinders[i].color);
+				}
+			}
+			i++;
+}
+
             
             // Draw the closest intersection
             if (closest_t < INFINITY)

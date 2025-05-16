@@ -55,9 +55,9 @@ void	get_plane(t_scene *scene, char *line)
 	else
 		parse_error("Plane color missing", line);
 	scene->plane_count++;
-	fprintf(stderr, "DEBUG: Parsed plane %d: point(%.1f,%.1f,%.1f) normal(%.1f,%.1f,%.1f)\n",
+	/*fprintf(stderr, "DEBUG: Parsed plane %d: point(%.1f,%.1f,%.1f) normal(%.1f,%.1f,%.1f)\n",
 		scene->plane_count - 1,
 		scene->planes->point.x, scene->planes->point.y, scene->planes->point.z,
-		scene->planes->normal.x, scene->planes->normal.y, scene->planes->normal.z);
+		scene->planes->normal.x, scene->planes->normal.y, scene->planes->normal.z);*/
 	free_split(split);
 }

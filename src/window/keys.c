@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 19:10:09 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/14 15:46:08 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/16 19:12:05 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,6 @@ int	key_hook(int keycode, t_scene *scene, t_mlx *mlx)
 
 int	deal_key(int key, t_mlx *mlx)
 {
-	if (is_key(key))
-	{
-		new_image(mlx);
-		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
-		print_menu(mlx);
-	}
 	if (key == KEY_ESC)
 	{
 		mlx_destroy_image(mlx->mlx_ptr, mlx->img_ptr);

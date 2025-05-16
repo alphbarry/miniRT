@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:05:57 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/15 19:42:20 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/16 19:33:51 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_in_shadow(t_scene *scene, t_vector point, t_vector light_pos)
 	float		light_distance;
 	float		t;
 	int			i;
-	int			debug = 1; // Set to 1 to enable detailed shadow debug prints
+	//int			debug = 1; // Set to 1 to enable detailed shadow debug prints
 
 	// Calculate direction and distance to light
 	light_dir = vector_sub(light_pos, point);
@@ -44,9 +44,9 @@ int	is_in_shadow(t_scene *scene, t_vector point, t_vector light_pos)
 		{
 			if (t > 0.0f && t < light_distance)
 			{
-				if (debug)
-					printf("Shadow from sphere %d detected at distance: %f (light dist: %f)\n", 
-						i, t, light_distance);
+				//if (debug)
+					//printf("Shadow from sphere %d detected at distance: %f (light dist: %f)\n", 
+					//	i, t, light_distance);
 				return (1); // In shadow
 			}
 		}
@@ -61,15 +61,31 @@ int	is_in_shadow(t_scene *scene, t_vector point, t_vector light_pos)
 		{
 			if (t > 0.0f && t < light_distance)
 			{
-				if (debug)
-					printf("Shadow from plane %d detected at distance: %f (light dist: %f)\n", 
-						i, t, light_distance);
+				//if (debug)
+				//	printf("Shadow from plane %d detected at distance: %f (light dist: %f)\n", 
+					//	i, t, light_distance);
 				return (1); // In shadow
 			}
 		}
 		i++;
 	}
 
+	// Check if any cylinder blocks the light
+	i = 0;
+	while (i < scene->cylinder_count)
+	{
+		if (intersect_cylinder(point, light_dir, scene->cylinders[i], &t))
+		{
+			if (t > 0.0f && t < light_distance)
+			{
+				//if (debug)
+					//printf("Shadow from cylinder %d detected at distance: %f (light dist: %f)\n", 
+						//i, t, light_distance);
+				return (1); // In shadow
+			}
+		}
+		i++;
+	}
 	// No object blocks the light
 	return (0);
 }
@@ -81,7 +97,7 @@ t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_colo
 	int		i;
 	float	diffuse;
 	t_vector	light_dir;
-	int		debug = 1; // Set to 1 to enable lighting computation debug prints
+	//int		debug = 1; // Set to 1 to enable lighting computation debug prints
 	t_vector	view_dir;
 	t_vector	reflect_dir;
 	float		specular;
@@ -97,7 +113,7 @@ t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_colo
 	view_dir = vector_normalize(vector_scale(point, -1.0f)); // Assuming camera at origin
 
 	// Para cada luz puntual
-	if (debug)
+/*	if (debug)
 	{
 		printf("DEBUG: Computing lighting with %d lights\n", scene->light_count);
 		printf("DEBUG: Ambient light: ratio=%.2f, color=(%d,%d,%d)\n", 
@@ -107,13 +123,13 @@ t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_colo
 			object_color.r, object_color.g, object_color.b);
 		printf("DEBUG: Point position: (%.2f,%.2f,%.2f), Normal: (%.2f,%.2f,%.2f)\n",
 			point.x, point.y, point.z, normal.x, normal.y, normal.z);
-	}
+	}*/
 	i = 0;
 	while (i < scene->light_count)
 	{
 		light_dir = vector_normalize(vector_sub(scene->lights[i].position, point));
 		diffuse = vector_dot(normal, light_dir);
-		
+		/*
 		if (debug)
 		{
 			printf("DEBUG: Light %d - position: (%.2f,%.2f,%.2f), intensity: %.2f\n", 
@@ -121,7 +137,7 @@ t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_colo
 				scene->lights[i].position.z, scene->lights[i].intensity);
 			printf("DEBUG: Light direction: (%.2f,%.2f,%.2f), dot product: %.2f\n",
 				light_dir.x, light_dir.y, light_dir.z, diffuse);
-		}
+		}*/
 
 		int in_shadow = is_in_shadow(scene, point, scene->lights[i].position);
 		
@@ -140,7 +156,7 @@ t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_colo
 				vector_scale(normal, 2.0f * vector_dot(light_dir, normal)),
 				light_dir));
 			specular = pow(fmax(vector_dot(reflect_dir, view_dir), 0.0f), SPECULAR_SHININESS) * SPECULAR_INTENSITY;
-
+/*
 			if (debug)
 			{
 				printf("DEBUG: Adding diffuse light: factor=%.2f, contribution=(%.2f,%.2f,%.2f)\n",
@@ -149,7 +165,7 @@ t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_colo
 					object_color.g * diffuse * (scene->lights[i].color.g / 255.0),
 					object_color.b * diffuse * (scene->lights[i].color.b / 255.0));
 				printf("DEBUG: Specular highlight: %.2f\n", specular);
-			}
+			}*/
 
 			// Add diffuse contribution
 			final_color.r += object_color.r * diffuse * (scene->lights[i].color.r / 255.0);
@@ -161,11 +177,11 @@ t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_colo
 			final_color.g += 255.0f * specular;
 			final_color.b += 255.0f * specular;
 		}
-		else if (debug)
+		/*else if (debug)
 		{
 			if (in_shadow)
 				printf("DEBUG: No diffuse light - point is in shadow\n");
-		}
+		}*/
 		i++;
 	}
 
@@ -178,13 +194,13 @@ t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_colo
 	if (final_color.r > 255) final_color.r = 255;
 	if (final_color.g > 255) final_color.g = 255;
 	if (final_color.b > 255) final_color.b = 255;
-
+/*
 	if (debug)
 	{
 		printf("DEBUG: Final color: (%d,%d,%d)\n", 
 			(int)final_color.r, (int)final_color.g, (int)final_color.b);
 		printf("---------------------------------------------\n");
-	}
+	}*/
 
 	return (final_color);
 }

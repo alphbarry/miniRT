@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:20:22 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/11 02:42:47 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/16 19:49:08 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_sphere
 	t_vector	center;
 	float		radius;
 	t_color		color;
+	struct s_sphere	*next;
 }	t_sphere;
 
 typedef struct s_plane
@@ -94,6 +95,7 @@ typedef struct s_plane
 	t_vector	point;
 	t_vector	normal;
 	t_color		color;
+	struct s_plane	*next;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -103,13 +105,22 @@ typedef struct s_cylinder
 	float		radius;
 	float		height;
 	t_color		color;
+	struct s_cylinder	*next;
 }	t_cylinder;
+
+typedef struct s_disk
+{
+	t_vector	center;
+	t_vector	normal;
+	float		radius;
+}	t_disk;
 
 typedef struct s_light
 {
 	t_vector	position;
 	float		intensity;
 	t_color		color;
+	struct s_light	*next;
 }	t_light;
 
 typedef struct s_ambient

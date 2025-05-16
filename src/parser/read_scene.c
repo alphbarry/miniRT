@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:13:50 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/14 16:55:23 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/16 17:36:27 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	get_scene(t_scene *scene, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("DEBUG: Parsing line: '%s'\n", line);
+		//printf("DEBUG: Parsing line: '%s'\n", line);
 		if (line[0] == '\n' || line[0] == '#')
 		{
 			free(line);

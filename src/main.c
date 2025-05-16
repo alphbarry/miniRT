@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:55:49 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/14 07:53:52 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/16 19:44:49 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	main(int ac, char **av)
 	ft_init_mlx(&mlx);
 	read_file(av[1], &scene, &mlx);
 	mlx_hook(mlx.win_ptr, 17, 0, ft_close_window, &mlx);
-	//mlx_key_hook(mlx.win_ptr, key_hook, &mlx);
+	mlx_key_hook(mlx.win_ptr, deal_key, &mlx);
 	mlx_loop(mlx.mlx_ptr);
+	free_scene(&scene);
 	return (0);
 }

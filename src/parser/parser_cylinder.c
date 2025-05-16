@@ -62,5 +62,6 @@ void	get_cylinder(t_scene *scene, char *line)
 	}
 	else
 		parse_error("Cylinder color missing", line);
+	scene->cylinder_count++;
 	free_split(split);
 }

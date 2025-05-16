@@ -47,14 +47,14 @@ void	get_light(t_scene *scene, char *line)
 	}
 	else
 		parse_error("Light color missing", line);
-	scene->light_count = 1;
-	printf("DEBUG: Parsed light: pos(%.1f,%.1f,%.1f) intensity(%.1f) color(%d,%d,%d)\n",
+	scene->light_count++;
+	/*printf("DEBUG: Parsed light: pos(%.1f,%.1f,%.1f) intensity(%.1f) color(%d,%d,%d)\n",
 		scene->lights->position.x,
 		scene->lights->position.y,
 		scene->lights->position.z,
 		scene->lights->intensity,
 		scene->lights->color.r,
 		scene->lights->color.g,
-		scene->lights->color.b);
+		scene->lights->color.b);*/
 	free_split(split);
 }
