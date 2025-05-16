@@ -54,5 +54,11 @@ void	get_sphere(t_scene *scene, char *line)
     if (!scene->spheres)
         parse_error("Memory allocation failed for spheres", NULL);
     scene->spheres[scene->sphere_count - 1] = new_sphere;
+    fprintf(stderr, "DEBUG: Parsed sphere %d: center(%.1f,%.1f,%.1f) radius(%.1f)\n",
+        scene->sphere_count - 1,
+        scene->spheres[scene->sphere_count - 1].center.x,
+        scene->spheres[scene->sphere_count - 1].center.y,
+        scene->spheres[scene->sphere_count - 1].center.z,
+        scene->spheres[scene->sphere_count - 1].radius);
     free_split(split);
 }

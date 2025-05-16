@@ -74,6 +74,7 @@ t_vector	vector_scale(t_vector a, float b);
 t_vector	vector_normalize(t_vector a);
 float		vector_dot(t_vector a, t_vector b);
 t_vector	vector_cross(t_vector a, t_vector b);
+float		vector_length(t_vector a);
 t_vector	get_ray_direction(t_camera *camera, t_mlx *mlx, float x, float y);
 void		set_pixel(t_mlx *mlx, t_color color, int x, int y);
 int			intersect_sphere(t_vector origin, t_vector direction, t_sphere sphere, float *t);

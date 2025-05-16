@@ -25,6 +25,13 @@ void	get_scene(t_scene *scene, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
+		printf("DEBUG: Parsing line: '%s'\n", line);
+		if (line[0] == '\n' || line[0] == '#')
+		{
+			free(line);
+			line = get_next_line(fd);
+			continue;
+		}
 		if (ft_strncmp(line, "A ", 2) == 0)
 			get_ambient(scene, line);
 		else if (ft_strncmp(line, "C ", 2) == 0)

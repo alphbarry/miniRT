@@ -59,3 +59,9 @@ t_vector	vector_cross(t_vector a, t_vector b)
 	result.z = a.x * b.y - a.y * b.x;
 	return (result);
 }
+
+/* Calculate the length (magnitude) of a vector */
+float	vector_length(t_vector a)
+{
+	return (sqrtf(vector_dot(a, a)));
+}
