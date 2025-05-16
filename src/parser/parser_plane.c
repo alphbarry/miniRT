@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 23:00:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 23:05:00 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/16 23:21:26 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,17 @@ void	get_plane(t_scene *scene, char *line)
 	split = ft_split(line, ' ');
 	if (!validate_split(split, "Split failed", line))
 		return;
-	
 	scene->planes = set_plane_properties();
-	
 	if (split[1])
 		parse_plane_position(scene->planes, split[1]);
 	else
 		parse_error("Plane position missing", line);
-	
 	if (split[2])
 		parse_plane_normal(scene->planes, split[2]);
 	else
 		parse_error("Plane normal missing", line);
-	
 	if (!parse_plane_color(scene->planes, split[3]))
 		return;
-	
 	scene->plane_count++;
 	free_split(split);
 }

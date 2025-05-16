@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/05/16 22:58:56 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/16 23:36:46 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,20 @@
 
 # include <stdlib.h>
 # include <stdio.h>
+# include <math.h>
 # include <unistd.h>
 # include "./struct.h"
 # include "../lib/mlx_linux/mlx.h"
 # include "../lib/libft/src/libft.h"
 # include "../lib/gnl/get_next_line.h"
+
+/* Lighting calculation configuration */
+#define LIGHT_INTENSITY_SCALE 2.0f   /* Scale factor for light intensity */
+#define SHADOW_BIAS 0.001f           /* Offset to prevent self-shadowing */
+#define SPECULAR_SHININESS 80.0f     /* Higher values create sharper highlights */
+#define SPECULAR_INTENSITY 0.8f      /* Intensity of specular highlights */
+#define AMBIENT_BOOST 0.15f          /* Additional ambient light to avoid totally dark areas */
+
 
 int	key_hook(int keycode, t_scene *scene, t_mlx *mlx);
 

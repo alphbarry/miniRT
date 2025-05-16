@@ -1,72 +1,25 @@
 #include "../../inc/minirt.h"
-#include <math.h>
-/*
+
 int	intersect_plane(t_vector origin, t_vector direction, t_plane plane, float *t)
 {
-	float	denominator;
-	float	numerator;
-	t_vector normalized_normal;
-	t_vector intersection_point;
-	t_vector to_point;
-	const float MIN_DIST = 0.001f; // Increased for better numerical stability
-	const float PLANE_SIZE = 5.0f; // Limit plane to ±5 units from center point
+	float MIN_DIST;
+	t_vector 	normalized_normal;
+	float 	denominator;
+	t_vector 	point_to_origin;
+	float 	numerator;
 
+	MIN_DIST = 0.001f;
 	normalized_normal = vector_normalize(plane.normal);
-	
-	// Ensure normal points toward the ray origin if needed
-	if (vector_dot(vector_sub(origin, plane.point), normalized_normal) < 0)
-		normalized_normal = vector_scale(normalized_normal, -1.0f);
-		
 	denominator = vector_dot(normalized_normal, direction);
-	
-	// Check if ray is parallel to plane or pointing away
 	if (fabs(denominator) < MIN_DIST)
 		return (0);
-	
-	numerator = vector_dot(vector_sub(plane.point, origin), normalized_normal);
+	point_to_origin = vector_sub(plane.point, origin);
+	numerator = vector_dot(point_to_origin, normalized_normal);
 	*t = numerator / denominator;
-	
-	// Make sure intersection is in front of the camera
 	if (*t < MIN_DIST)
 		return (0);
-		
-	// Calculate the intersection point
-	intersection_point = vector_add(origin, vector_scale(direction, *t));
-	
-	// Limit the plane's size by checking distance from center point
-	to_point = vector_sub(intersection_point, plane.point);
-	// Project the vector onto the plane
-	to_point = vector_sub(to_point, 
-		vector_scale(normalized_normal, vector_dot(to_point, normalized_normal)));
-	
-	// If point is too far from center, reject the intersection
-	if (fabs(to_point.x) > PLANE_SIZE || fabs(to_point.y) > PLANE_SIZE || fabs(to_point.z) > PLANE_SIZE)
-		return (0);
-		
-	return (1);
-}*/
-
-int	intersect_plane(t_vector origin, t_vector direction, t_plane plane, float *t)
-{
-	const float MIN_DIST = 0.001f;
-
-	t_vector normalized_normal = vector_normalize(plane.normal);
-	float denominator = vector_dot(normalized_normal, direction);
-
-	if (fabs(denominator) < MIN_DIST)
-		return (0);
-
-	t_vector point_to_origin = vector_sub(plane.point, origin);
-	float numerator = vector_dot(point_to_origin, normalized_normal);
-	*t = numerator / denominator;
-
-	if (*t < MIN_DIST)
-		return (0);
-
 	return (1);
 }
-
-
 
 void	draw_plane(t_mlx *mlx, t_scene *scene, t_plane plane)
 {

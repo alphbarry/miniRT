@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:06:03 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/14 15:46:20 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/16 23:43:50 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void init_mlx(t_mlx *mlx)
     mlx->bpp = 0;
     mlx->size_line = 0;
     mlx->endian = 0;
-   // mlx->win_x = 100;
-   // mlx->win_y = 100;
+   	mlx->win_x = 100;
+   	mlx->win_y = 100;
 	mlx->win_x = 1920;
 	mlx->win_y = 1080;
 	mlx->shift_x = mlx->win_x / 2;

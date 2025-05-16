@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:05:52 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/14 15:32:22 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/16 23:27:36 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void fill_background(t_mlx *mlx, t_scene *scene)
 
 	// Aplica el ratio de la luz ambiente al color
 	color = apply_ratio_to_color(scene->ambient.color, scene->ambient.ratio);
-
 	y = 0;
 	while (y < mlx->win_y)
 	{
@@ -66,7 +65,6 @@ void fill_background(t_mlx *mlx, t_scene *scene)
 		}
 		y++;
 	}
-
 	// Muestra la imagen generada en la ventana
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
 }
