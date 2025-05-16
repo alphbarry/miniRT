@@ -6,7 +6,7 @@
 #    By: alpha <alpha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 19:37:41 by alpha             #+#    #+#              #
-#    Updated: 2025/05/16 19:39:07 by alphbarr         ###   ########.fr        #
+#    Updated: 2025/05/16 22:54:00 by alpha            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,9 +46,14 @@ FILES		=	main.c \
 				parser/parser_ambient.c \
 				parser/parser_camera.c \
 				parser/parser_light.c \
+				parser/parser_light_utils.c \
 				parser/parser_cylinder.c \
+				parser/parser_cylinder_utils.c \
 				parser/parser_plane.c \
+				parser/parser_plane_utils.c \
 				parser/parser_sphere.c \
+				parser/parser_sphere_utils.c \
+				parser/parser_validation.c \
 				parser/read_scene.c \
 				parser/init_params.c \
 				utils/free.c \

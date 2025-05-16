@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/05/16 19:45:16 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/16 22:58:56 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,28 @@ void	get_light(t_scene *scene, char *line);
 void	get_sphere(t_scene *scene, char *line);
 void	get_cylinder(t_scene *scene, char *line);
 void	get_plane(t_scene *scene, char *line);
+int		validate_coordinates(char **coords, char *err_msg, char *value);
+int		validate_numeric_range(float value, float min, float max, char *err_msg);
+int		validate_color_component(int value, char *component, char *err_msg);
+int		validate_color_values(char **rgb, char *err_msg, char *value);
+int		validate_split(char **split, char *err_msg, char *line);
+void	parse_cylinder_position(t_cylinder *cylinder, char *pos_str);
+void	parse_cylinder_orientation(t_cylinder *cylinder, char *orient_str);
+int		parse_cylinder_dimensions(t_cylinder *cylinder, char *radius_str, char *height_str);
+int		parse_cylinder_color(t_cylinder *cylinder, char *color_str);
+t_cylinder	*set_cylinder_properties(void);
+void		parse_plane_position(t_plane *plane, char *pos_str);
+void		parse_plane_normal(t_plane *plane, char *normal_str);
+int		parse_plane_color(t_plane *plane, char *color_str);
+t_plane	*set_plane_properties(void);
+void	parse_sphere_position(t_sphere *sphere, char *pos_str);
+int		parse_sphere_radius(t_sphere *sphere, char *radius_str);
+int		parse_sphere_color(t_sphere *sphere, char *color_str);
+void	set_sphere_properties(t_scene *scene, t_sphere new_sphere);
+void		parse_light_position(t_light *light, char *pos_str);
+int		parse_light_intensity(t_light *light, char *intensity_str);
+int		parse_light_color(t_light *light, char *color_str);
+t_light	*set_light_properties(void);
 
 void	ft_error(char *message);
 

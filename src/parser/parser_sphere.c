@@ -1,64 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_sphere.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 15:47:00 by alphbarr          #+#    #+#             */
+/*   Updated: 2025/05/14 15:47:00 by alphbarr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minirt.h"
 
 void	get_sphere(t_scene *scene, char *line)
 {
-    char	**split;
-    char	**pos;
-    char	**rgb;
-    t_sphere	new_sphere;
+	char		**split;
+	t_sphere	new_sphere;
 
-    split = ft_split(line, ' ');
-    if (!split)
-        parse_error("Split failed", line);
-    // Procesa la posición de la esfera
-    if (split[1])
-    {
-        pos = ft_split(split[1], ',');
-        if (!pos || !pos[0] || !pos[1] || !pos[2])
-            parse_error("Invalid sphere position", split[1]);
-        new_sphere.center.x = ft_atoif(pos[0]);
-        new_sphere.center.y = ft_atoif(pos[1]);
-        new_sphere.center.z = ft_atoif(pos[2]);
-        free_split(pos);
-    }
-    else
-        parse_error("Sphere position missing", line);
-    if (split[2])
-        new_sphere.radius = ft_atoif(split[2]);
-    else
-        parse_error("Sphere radius missing", line);
-    if (new_sphere.radius <= 0)
-        parse_error("Sphere radius must be positive", split[2]);
-    if (split[3])
-    {
-        rgb = ft_split(split[3], ',');
-        if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
-            parse_error("Invalid sphere color", split[3]);
-        new_sphere.color.r = ft_atoi(rgb[0]);
-        new_sphere.color.g = ft_atoi(rgb[1]);
-        new_sphere.color.b = ft_atoi(rgb[2]);
-        if (new_sphere.color.r < 0 || new_sphere.color.r > 255)
-            parse_error("Sphere red value out of range", rgb[0]);
-        if (new_sphere.color.g < 0 || new_sphere.color.g > 255)
-            parse_error("Sphere green value out of range", rgb[1]);
-        if (new_sphere.color.b < 0 || new_sphere.color.b > 255)
-            parse_error("Sphere blue value out of range", rgb[2]);
-        free_split(rgb);
-    }
-    else
-        parse_error("Sphere color missing", line);
-    // Añadir la esfera a la escena
-    // Redimensionamos el array de esferas si es necesario
-    scene->sphere_count++;
-    scene->spheres = realloc(scene->spheres, scene->sphere_count * sizeof(t_sphere));
-    if (!scene->spheres)
-        parse_error("Memory allocation failed for spheres", NULL);
-    scene->spheres[scene->sphere_count - 1] = new_sphere;
-    /*fprintf(stderr, "DEBUG: Parsed sphere %d: center(%.1f,%.1f,%.1f) radius(%.1f)\n",
-        scene->sphere_count - 1,
-        scene->spheres[scene->sphere_count - 1].center.x,
-        scene->spheres[scene->sphere_count - 1].center.y,
-        scene->spheres[scene->sphere_count - 1].center.z,
-        scene->spheres[scene->sphere_count - 1].radius);*/
-    free_split(split);
+	ft_memset(&new_sphere, 0, sizeof(t_sphere));
+	split = ft_split(line, ' ');
+	if (!validate_split(split, "Split failed", line))
+		return;
+	
+	if (split[1])
+		parse_sphere_position(&new_sphere, split[1]);
+	else
+		parse_error("Sphere position missing", line);
+	
+	if (!parse_sphere_radius(&new_sphere, split[2]))
+		return;
+	
+	if (!parse_sphere_color(&new_sphere, split[3]))
+		return;
+	
+	set_sphere_properties(scene, new_sphere);
+	free_split(split);
 }
