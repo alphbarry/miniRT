@@ -67,7 +67,9 @@ FILES		=	main.c \
 				figures/cylinders.c \
 				figures/planes.c \
 				figures/spheres.c \
-				environment/light.c
+				environment/light.c \
+				environment/light_shadow.c \
+				environment/light_compute.c
 #<--------------------------------->SRCS<----------------------------------->#
 SRCS		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 

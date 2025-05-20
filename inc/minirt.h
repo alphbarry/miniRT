@@ -120,6 +120,22 @@ int			intersect_cylinder(t_vector origin, t_vector direction, t_cylinder cylinde
 //environment
 t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal, t_color object_color);
 
+// Core lighting functions
+void    initialize_light_calc(t_scene *scene, t_light_calc *calc);
+t_vector get_light_direction(t_vector point, t_vector light_pos);
+
+// Light computation functions
+t_color calculate_ambient_light(t_scene *scene, t_color object_color);
+t_color calculate_diffuse_light(t_light light, t_vector normal, t_vector light_dir, t_color object_color);
+t_color calculate_specular_light(t_vector light_dir, t_vector normal, t_vector view_dir);
+t_color apply_color_corrections(t_color color);
+
+// Shadow functions
+int     check_sphere_shadows(t_scene *scene, t_vector point, t_vector light_dir, float light_distance);
+int     check_plane_shadows(t_scene *scene, t_vector point, t_vector light_dir, float light_distance);
+int     check_cylinder_shadows(t_scene *scene, t_vector point, t_vector light_dir, float light_distance);
+int     is_in_shadow(t_scene *scene, t_vector point, t_vector light_pos);
+
 //rendering
 void	draw_sphere(t_mlx *mlx, t_scene *scene, t_sphere sphere);
 void	draw_plane(t_mlx *mlx, t_scene *scene, t_plane plane);

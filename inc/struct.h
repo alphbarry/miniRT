@@ -149,4 +149,15 @@ typedef struct s_data
 	t_scene		scene;
 }	t_data;
 
+typedef struct s_light_calc
+{
+    float   ambient_factor;
+    float   ambient_r;
+    float   ambient_g;
+    float   ambient_b;
+    float   intensity_scale;
+    float   specular_shininess;
+    float   specular_intensity;
+} t_light_calc;
+
 #endif
