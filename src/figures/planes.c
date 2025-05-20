@@ -1,12 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   planes.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/20 17:32:50 by alphbarr          #+#    #+#             */
+/*   Updated: 2025/05/20 17:32:52 by alphbarr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minirt.h"
 
-int	intersect_plane(t_vector origin, t_vector direction, t_plane plane, float *t)
+int	intersect_plane(t_vector origin, t_vector direction, t_plane plane,
+		float *t)
 {
-	float MIN_DIST;
-	t_vector 	normalized_normal;
-	float 	denominator;
-	t_vector 	point_to_origin;
-	float 	numerator;
+	float		MIN_DIST;
+	t_vector	normalized_normal;
+	float		denominator;
+	t_vector	point_to_origin;
+	float		numerator;
 
 	MIN_DIST = 0.001f;
 	normalized_normal = vector_normalize(plane.normal);
@@ -23,13 +36,14 @@ int	intersect_plane(t_vector origin, t_vector direction, t_plane plane, float *t
 
 void	draw_plane(t_mlx *mlx, t_scene *scene, t_plane plane)
 {
-	int		x;
-	int		y;
-	float	t;
+	int			x;
+	int			y;
+	float		t;
 	t_vector	ray_direction;
 	t_vector	origin;
-	t_color	color;
-
+	t_color		color;
+				t_vector intersection_point;
+				t_vector normalized_normal;
 
 	origin = scene->camera.position;
 	y = 0;
@@ -41,12 +55,11 @@ void	draw_plane(t_mlx *mlx, t_scene *scene, t_plane plane)
 			ray_direction = get_ray_direction(&scene->camera, mlx, x, y);
 			if (intersect_plane(origin, ray_direction, plane, &t))
 			{
-				t_vector intersection_point;
-				t_vector normalized_normal;
-				
-				intersection_point = vector_add(origin, vector_scale(ray_direction, t));
+				intersection_point = vector_add(origin,
+						vector_scale(ray_direction, t));
 				normalized_normal = vector_normalize(plane.normal);
-				color = compute_lighting(scene, intersection_point, normalized_normal, plane.color);
+				color = compute_lighting(scene, intersection_point,
+						normalized_normal, plane.color);
 				set_pixel(mlx, color, x, y);
 			}
 			x++;

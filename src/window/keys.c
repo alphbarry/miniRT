@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 19:10:09 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 19:12:05 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/19 11:02:02 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	new_image(t_mlx *mlx)
 		i++;
 	}
 }
-
+/*
 void	rotate_camera(t_camera *camera, float angle_deg, char axis)
 {
 	float	angle = angle_deg * M_PI / 180.0;
@@ -53,7 +53,7 @@ void	rotate_camera(t_camera *camera, float angle_deg, char axis)
 		new_dir.z = dir.y * sin(angle) + dir.z * cos(angle);
 	}
 	camera->tridimensional = vector_normalize(new_dir);
-}
+}*/
 
 
 int	key_hook(int keycode, t_scene *scene, t_mlx *mlx)
@@ -78,10 +78,10 @@ int	key_hook(int keycode, t_scene *scene, t_mlx *mlx)
 		scene->camera.position.z -= speed;
 
 	// Rotación básica en eje horizontal (Y)
-	else if (keycode == KEY_4 || keycode == KEY_4T)
-		rotate_camera(&scene->camera, -5, 'y');
-	else if (keycode == KEY_6 || keycode == KEY_6T)
-		rotate_camera(&scene->camera, 5, 'y');
+//	else if (keycode == KEY_4 || keycode == KEY_4T)
+//		rotate_camera(&scene->camera, -5, 'y');
+//	else if (keycode == KEY_6 || keycode == KEY_6T)
+//		rotate_camera(&scene->camera, 5, 'y');
 
 	// Redibujar la escena
 	draw_scene(mlx, scene);
