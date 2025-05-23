@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:55:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 22:55:00 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:08:36 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	get_cylinder(t_scene *scene, char *line)
 {
 	char	**split;
+	t_cylinder	*new_cylinder;
 
 	split = ft_split(line, ' ');
 	if (!validate_split(split, "Split failed", line))
 		return;
-	
-	scene->cylinders = set_cylinder_properties();
-	
+	init_cylinder(&scene->cylinders[scene->cylinder_count]);
+	new_cylinder = &scene->cylinders[scene->cylinder_count];
 	if (split[1])
 		parse_cylinder_position(scene->cylinders, split[1]);
 	else

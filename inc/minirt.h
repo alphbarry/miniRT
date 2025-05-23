@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/05/16 23:36:46 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/23 18:57:05 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void init_ambient(t_ambient *ambient);
 void init_scene(t_scene *scene);
 void init_mlx(t_mlx *mlx);
 void init_data(t_data *data);
+void	allocate_objects(t_scene *scene);
 
 
 //mlx
