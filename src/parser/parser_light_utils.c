@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:33:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 22:33:00 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:36:09 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,3 @@ int	parse_light_color(t_light *light, char *color_str)
 	free_split(rgb);
 	return (1);
 }
-
-t_light	*set_light_properties(void)
-{
-	t_light	*light;
-
-	light = malloc(sizeof(t_light));
-	if (!light)
-		parse_error("Memory allocation failed for light", NULL);
-	init_light(light);
-	return (light);
-}
-

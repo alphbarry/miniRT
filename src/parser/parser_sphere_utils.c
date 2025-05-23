@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:38:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 22:38:00 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:35:58 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,3 @@ int	parse_sphere_color(t_sphere *sphere, char *color_str)
 	free_split(rgb);
 	return (1);
 }
-
-void	set_sphere_properties(t_scene *scene, t_sphere new_sphere)
-{
-	scene->sphere_count++;
-	scene->spheres = realloc(scene->spheres, 
-			scene->sphere_count * sizeof(t_sphere));
-	if (!scene->spheres)
-		parse_error("Memory allocation failed for spheres", NULL);
-	scene->spheres[scene->sphere_count - 1] = new_sphere;
-}
-

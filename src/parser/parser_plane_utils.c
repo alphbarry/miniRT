@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:55:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 22:55:00 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:36:14 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,3 @@ int	parse_plane_color(t_plane *plane, char *color_str)
 	free_split(rgb);
 	return (1);
 }
-
-t_plane	*set_plane_properties(void)
-{
-	t_plane	*plane;
-
-	plane = malloc(sizeof(t_plane));
-	if (!plane)
-		parse_error("Memory allocation failed for plane", NULL);
-	init_plane(plane);
-	return (plane);
-}
-

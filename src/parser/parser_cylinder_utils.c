@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:45:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 22:47:31 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/23 19:36:23 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,3 @@ int	parse_cylinder_color(t_cylinder *cylinder, char *color_str)
 	free_split(rgb);
 	return (1);
 }
-
-t_cylinder	*set_cylinder_properties(void)
-{
-	t_cylinder	*cylinder;
-
-	cylinder = malloc(sizeof(t_cylinder));
-	if (!cylinder)
-		parse_error("Memory allocation failed for cylinder", NULL);
-	init_cylinder(cylinder);
-	return (cylinder);
-}
-

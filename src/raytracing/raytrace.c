@@ -97,12 +97,35 @@ void	draw_scene(t_mlx *mlx, t_scene *scene)
 				{
 					closest_t = t;
 					hit_point = vector_add(origin, vector_scale(ray_direction, t));
-					// Cálculo de la normal
+					
+					// Improved normal calculation with distinction between caps and curved surface
 					t_vector axis = vector_normalize(scene->cylinders[i].normal);
 					t_vector to_hit = vector_sub(hit_point, scene->cylinders[i].center);
 					float proj = vector_dot(to_hit, axis);
-					t_vector closest_axis_point = vector_add(scene->cylinders[i].center, vector_scale(axis, proj));
-					normal = vector_normalize(vector_sub(hit_point, closest_axis_point));
+					float half_height = scene->cylinders[i].height / 2.0f;
+					
+					// Check if hit point is on a cap (with epsilon)
+					const float EPSILON = 1e-6f;
+					if (fabs(proj - half_height) < EPSILON || fabs(proj + half_height) < EPSILON) 
+					{
+						// Point is on a cap - normal is axis direction (or negative)
+						if (proj > 0)
+							normal = axis;
+						else
+							normal = vector_scale(axis, -1.0f);
+					} 
+					else 
+					{
+						// Point is on the curved surface
+						t_vector closest_axis_point = vector_add(
+							scene->cylinders[i].center, 
+							vector_scale(axis, proj)
+						);
+						
+						// Get normal from cylinder center to hit point (perpendicular to axis)
+						normal = vector_normalize(vector_sub(hit_point, closest_axis_point));
+					}
+					
 					color = compute_lighting(scene, hit_point, normal, scene->cylinders[i].color);
 				}
 			}
