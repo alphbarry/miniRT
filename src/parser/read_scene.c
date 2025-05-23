@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:13:50 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 17:36:27 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:58:02 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,31 @@ int	parse_error(char *msg, char *value)
 {
 	printf("Error: %s -> '%s'\n", msg, value);
 	exit (EXIT_FAILURE);
+}
+
+void	count_objects(t_scene *scene, int fd)
+{
+	char	*line;
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (line[0] == '\n' || line[0] == '#')
+		{
+			free(line);
+			line = get_next_line(fd);
+			continue;
+		}
+		if (ft_strncmp(line, "L ", 2) == 0)
+			scene->light_count++;
+		else if (ft_strncmp(line, "sp ", 3) == 0)
+			scene->sphere_count++;
+		else if (ft_strncmp(line, "pl ", 3) == 0)
+			scene->plane_count++;
+		else if (ft_strncmp(line, "cy ", 3) == 0)
+			scene->cylinder_count++;
+		free(line);
+		line = get_next_line(fd);
+	}
 }
 
 void	get_scene(t_scene *scene, int fd)
@@ -62,6 +87,15 @@ int	read_file(char *file, t_scene *scene, t_mlx *mlx)
 		return (1);
 	}
 	init_scene(scene);
+	count_objects(scene, fd);
+	close(fd);
+	allocate_objects(scene);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		perror("Error opening file");
+		return (1);
+	}
 	get_scene(scene, fd);
 	close(fd);
 	draw_scene(mlx, scene);

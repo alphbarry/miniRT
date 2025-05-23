@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 20:40:17 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/14 15:32:52 by alpha            ###   ########.fr       */
+/*   Updated: 2025/05/23 18:56:38 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,19 @@ void init_scene(t_scene *scene)
     scene->light_count = 0;
 }
 
+void	allocate_objects(t_scene *scene)
+{
+	scene->spheres = malloc(sizeof(t_sphere) * scene->sphere_count);
+	scene->planes = malloc(sizeof(t_plane) * scene->plane_count);
+	scene->cylinders = malloc(sizeof(t_cylinder) * scene->cylinder_count);
+	scene->lights = malloc(sizeof(t_light) * scene->light_count);
+	if (!scene->spheres || !scene->planes || !scene->cylinders || !scene->lights)
+		parse_error("Memory allocation failed for objects", NULL);
+	scene->sphere_count = 0;
+	scene->plane_count = 0;
+	scene->cylinder_count = 0;
+	scene->light_count = 0;
+}
 
 void init_data(t_data *data)
 {
