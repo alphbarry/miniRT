@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/05/23 18:57:05 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:11:21 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ void	ft_init_mlx(t_mlx *mlx);
 //free
 void	free_split(char **split);
 void	free_scene(t_scene *scene);
+//crispy
+void    free_spheres(t_sphere *spheres);
+void    free_planes(t_plane *planes);
+void    free_cylinders(t_cylinder *cylinders);
+void    free_lights(t_light *lights);
 
 int	parse_error(char *msg, char *value);
 
