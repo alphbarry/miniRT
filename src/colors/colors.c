@@ -17,6 +17,16 @@ int	color_to_int(t_color color)
 	return ((color.r & 0xFF) << 16 | (color.g & 0xFF) << 8 | (color.b & 0xFF));
 }
 
+t_color	vector_add_color(t_color a, t_color b)
+{
+	t_color	result;
+
+	result.r = fmin(a.r + b.r, 255.0f);
+	result.g = fmin(a.g + b.g, 255.0f);
+	result.b = fmin(a.b + b.b, 255.0f);
+	return (result);
+}
+
 void	put_pixel(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;

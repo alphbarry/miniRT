@@ -3,13 +3,11 @@
 void	get_light(t_scene *scene, char *line)
 {
 	char	**split;
-	t_light	*new_light;
 
 	split = ft_split(line, ' ');
 	if (!validate_split(split, "Split failed", line))
 		return;
 	init_light(&scene->lights[scene->light_count]);
-	new_light = &scene->lights[scene->light_count];
 	if (split[1])
 		parse_light_position(scene->lights, split[1]);
 	else

@@ -29,6 +29,14 @@
 #define SPECULAR_INTENSITY 0.8f      /* Intensity of specular highlights */
 #define AMBIENT_BOOST 0.15f          /* Additional ambient light to avoid totally dark areas */
 
+// Lighting calculation data structure
+typedef struct s_lighting_data {
+	t_vector	point;
+	t_vector	normal;
+	t_vector	view_dir;
+	t_color		object_color;
+	t_color		final_color;
+}	t_lighting_data;
 
 int	key_hook(int keycode, t_scene *scene, t_mlx *mlx);
 
@@ -135,6 +143,9 @@ t_color calculate_ambient_light(t_scene *scene, t_color object_color);
 t_color calculate_diffuse_light(t_light light, t_vector normal, t_vector light_dir, t_color object_color);
 t_color calculate_specular_light(t_vector light_dir, t_vector normal, t_vector view_dir);
 t_color apply_color_corrections(t_color color);
+void	prepare_lighting_vectors(t_vector point, t_vector *view_dir);
+void	add_light_contribution(t_scene *scene, t_light light, t_lighting_data *data);
+t_color	vector_add_color(t_color a, t_color b);
 
 // Shadow functions
 int     check_sphere_shadows(t_scene *scene, t_vector point, t_vector light_dir, float light_distance);

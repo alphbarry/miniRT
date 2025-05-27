@@ -15,13 +15,11 @@
 void	get_plane(t_scene *scene, char *line)
 {
 	char	**split;
-	t_plane	*new_plane;
 
 	split = ft_split(line, ' ');
 	if (!validate_split(split, "Split failed", line))
 		return;
 	init_plane(&scene->planes[scene->plane_count]);
-	new_plane = &scene->planes[scene->plane_count];
 	if (split[1])
 		parse_plane_position(scene->planes, split[1]);
 	else

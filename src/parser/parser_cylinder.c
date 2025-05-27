@@ -15,13 +15,11 @@
 void	get_cylinder(t_scene *scene, char *line)
 {
 	char	**split;
-	t_cylinder	*new_cylinder;
 
 	split = ft_split(line, ' ');
 	if (!validate_split(split, "Split failed", line))
 		return;
 	init_cylinder(&scene->cylinders[scene->cylinder_count]);
-	new_cylinder = &scene->cylinders[scene->cylinder_count];
 	if (split[1])
 		parse_cylinder_position(scene->cylinders, split[1]);
 	else
