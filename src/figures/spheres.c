@@ -6,42 +6,76 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 17:32:57 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/20 17:32:59 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:31:48 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-//formule for intersection of ray and sphere: [ t = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-int	intersect_sphere(t_vector origin, t_vector direction, t_sphere sphere, float *t)
+/* Ray-sphere intersection formula */
+int	intersect_sphere(t_vector origin, t_vector direction, t_sphere sphere,
+		float *t)
 {
-	t_vector	oc;// oc is the vector from the ray origin to the sphere center
-	float		a;// a is the dot product of the direction vector with itself
-	float		b;// b is the dot product of the oc vector with the direction vector
-	float		c;// c is the dot product of the oc vector with itself minus the square of the sphere's radius
-	float		discriminant;// discriminant is b^2 - 4ac
+	t_vector	oc;
+	float		a;
+	float		b;
+	float		discriminant;
 
 	oc = vector_sub(origin, sphere.center);
 	a = vector_dot(direction, direction);
 	b = 2.0f * vector_dot(oc, direction);
-	c = vector_dot(oc, oc) - (sphere.radius * sphere.radius);
-	discriminant = ((b * b) - (4 * a * c));
+	discriminant = b * b - 4 * a * (vector_dot(oc, oc) - (sphere.radius
+				* sphere.radius));
 	if (discriminant < 0)
 		return (0);
-	*t = (-b - sqrtf(discriminant)) / (2.0f * a);// t = (-b ± sqrt(discriminant)) / 2a
+	*t = (-b - sqrtf(discriminant)) / (2.0f * a);
 	return (1);
 }
 
+/* Calculate intersection point of ray with sphere */
+static t_vector	get_sphere_intersection(t_vector origin, t_vector direction,
+		float t)
+{
+	t_vector	hit_point;
+
+	hit_point = vector_add(origin, vector_scale(direction, t));
+	return (hit_point);
+}
+
+/* Calculate normal vector at sphere intersection point */
+static t_vector	get_sphere_normal(t_vector hit_point, t_sphere sphere)
+{
+	t_vector	normal;
+
+	normal = vector_normalize(vector_sub(hit_point, sphere.center));
+	return (normal);
+}
+
+/* Process a single pixel for sphere rendering */
+static void	process_sphere_pixel(t_mlx *mlx, t_scene *scene, t_sphere sphere,
+		t_pixel px)
+{
+	float		t;
+	t_vector	hit_point;
+	t_vector	normal;
+	t_color		color;
+
+	if (intersect_sphere(px.origin, px.direction, sphere, &t))
+	{
+		hit_point = get_sphere_intersection(px.origin, px.direction, t);
+		normal = get_sphere_normal(hit_point, sphere);
+		color = compute_lighting(scene, hit_point, normal, sphere.color);
+		set_pixel(mlx, color, px.x, px.y);
+	}
+}
+
+/* Main sphere rendering function */
 void	draw_sphere(t_mlx *mlx, t_scene *scene, t_sphere sphere)
 {
 	int			x;
 	int			y;
-	float		t;
-	t_vector	ray_direction;
 	t_vector	origin;
-	t_color		color;
-	t_vector	hit_point;
-	t_vector	normal;
+	t_pixel		px;
 
 	origin = scene->camera.position;
 	y = 0;
@@ -50,14 +84,11 @@ void	draw_sphere(t_mlx *mlx, t_scene *scene, t_sphere sphere)
 		x = 0;
 		while (x < mlx->win_x)
 		{
-			ray_direction = get_ray_direction(&scene->camera, mlx, x, y);
-			if (intersect_sphere(origin, ray_direction, sphere, &t))
-			{
-				hit_point = vector_add(origin, vector_scale(ray_direction, t));
-				normal = vector_normalize(vector_sub(hit_point, sphere.center));
-				color = compute_lighting(scene, hit_point, normal, sphere.color);
-				set_pixel(mlx, color, x, y);
-			}
+			px.origin = origin;
+			px.direction = get_ray_direction(&scene->camera, mlx, x, y);
+			px.x = x;
+			px.y = y;
+			process_sphere_pixel(mlx, scene, sphere, px);
 			x++;
 		}
 		y++;
