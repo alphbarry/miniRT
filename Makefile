@@ -6,7 +6,7 @@
 #    By: alpha <alpha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 19:37:41 by alpha             #+#    #+#              #
-#    Updated: 2025/05/27 17:06:54 by cgomez-z         ###   ########.fr        #
+#    Updated: 2025/05/28 02:02:55 by cgomez-z         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ FILES		=	main.c \
 				parser/read_scene.c \
 				parser/init_params.c \
 				utils/free_objects.c \
-                                utils/free_scene.c \
+                utils/free_scene.c \
 				window/mlx.c \
 				window/keys.c \
 				window/window_size.c \
@@ -70,7 +70,8 @@ FILES		=	main.c \
 				figures/spheres.c \
 				environment/light.c \
 				environment/light_shadow.c \
-				environment/light_compute.c
+				environment/light_compute.c \
+				environment/light_utils.c
 #<--------------------------------->SRCS<----------------------------------->#
 SRCS		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 
