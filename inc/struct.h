@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:20:22 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 19:49:08 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/28 17:55:54 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,34 @@ typedef struct s_vector
 	float	y;
 	float	z;
 }	t_vector;
+
+typedef struct s_pixel
+{
+	t_vector	origin;
+	t_vector	direction;
+	int			x;
+	int			y;
+}	t_pixel;
+
+typedef struct s_cyl_hit
+{
+	float	a;
+	float	b;
+	float	c;
+	float	disc;
+	float	t0;
+	float	t1;
+	int		valid0;
+	int		valid1;
+}	t_cyl_hit;
+
+typedef struct s_cap_hit
+{
+	t_vector	center;
+	t_vector	axis;
+	float		denom;
+	float		t_temp;
+}	t_cap_hit;
 
 typedef struct  s_color
 {
@@ -128,6 +156,16 @@ typedef struct s_ambient
 	float		ratio;
 	t_color		color;
 }	t_ambient;
+
+/* --- Estructura auxiliar para un solo “slot” de intersección -------------- */
+typedef struct s_trace
+{
+	float		closest_t;
+	float		t;
+	t_vector	hit;
+	t_vector	normal;
+	t_color		color;
+}	t_trace;
 
 typedef struct s_scene
 {
