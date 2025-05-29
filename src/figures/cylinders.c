@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 18:07:28 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/28 16:25:56 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:53:32 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int	check_cylinder_hits(t_cylinder cyl, t_pixel px, float *t)
 }
 
 /* Calculate cylinder normal vector at hit point */
-t_vector	get_cylinder_normal(t_vector hit_point, t_cylinder cyl, float t)
+t_vector	get_cylinder_normal(t_vector hit_point, t_cylinder cyl)
 {
 	t_vector	axis;
 	t_vector	cp;
@@ -112,7 +112,7 @@ static void	cylinder_render_pixel(t_mlx *mlx, t_scene *scene,
 	if (!check_cylinder_hits(cylinder, px, &t))
 		return ;
 	hit_point = vector_add(px.origin, vector_scale(px.direction, t));
-	normal = get_cylinder_normal(hit_point, cylinder, t);
+	normal = get_cylinder_normal(hit_point, cylinder);
 	color = compute_lighting(scene, hit_point, normal, cylinder.color);
 	set_pixel(mlx, color, px.x, px.y);
 }
