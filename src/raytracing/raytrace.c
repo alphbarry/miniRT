@@ -6,7 +6,7 @@
 /*   By: cgomez-z <cgomez-z@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:40:01 by cgomez-z          #+#    #+#             */
-/*   Updated: 2025/05/28 17:58:54 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/05/29 18:53:19 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ t_vector	get_ray_direction(t_camera *camera, t_mlx *mlx, float x, float y)
 	return (vector_normalize(direction));
 }
 
+void	set_pixel(t_mlx *mlx, t_color color, int x, int y)
+{
+	int	i;
+
+	i = ((y * mlx->size_line) + (x * mlx->bpp / 8));
+	mlx->img_data[i] = color.b;
+	mlx->img_data[i + 1] = color.g;
+	mlx->img_data[i + 2] = color.r;
+}
 
 /*
 #include "../../inc/minirt.h"
