@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 17:42:52 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/20 17:42:52 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/05/30 00:49:24 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_plane_shadows(t_scene *scene, t_vector point,
 	return (0);
 }
 
-/* Check if any cylinder blocks the light */
+/* Check if any cylinder blocks the light
 int	check_cylinder_shadows(t_scene *scene, t_vector point, 
 		t_vector light_dir, float light_distance)
 {
@@ -62,7 +62,8 @@ int	check_cylinder_shadows(t_scene *scene, t_vector point,
 	i = 0;
 	while (i < scene->cylinder_count)
 	{
-		if (intersect_cylinder(point, light_dir, scene->cylinders[i], &t))
+		if (check_cylinder_hits(cyl, (t_pixel){origin, dir, 0, 0}, &t)
+    && t < light_dist)
 		{
 			if (t > 0.0f && t < light_distance)
 				return (1); // In shadow
@@ -70,7 +71,32 @@ int	check_cylinder_shadows(t_scene *scene, t_vector point,
 		i++;
 	}
 	return (0);
+}*/
+
+int	check_cylinder_shadows(t_scene *scene, t_vector point, 
+		t_vector light_dir, float light_distance)
+{
+	float		t;
+	int			i;
+	t_pixel		ray;
+
+	i = 0;
+	while (i < scene->cylinder_count)
+	{
+		ray.origin = point;          // El origen del rayo de sombra es el punto
+		ray.direction = light_dir;   // Dirección hacia la luz
+		ray.x = 0;                   // Puedes poner 0 si no usas estas coordenadas
+		ray.y = 0;
+
+		// Usar el cilindro i-ésimo del arreglo/lista de cilindros
+		if (check_cylinder_hits(scene->cylinders[i], ray, &t) && t > 0.0f && t < light_distance)
+			return (1); // En sombra, hay un cilindro bloqueando la luz
+
+		i++;
+	}
+	return (0);
 }
+
 
 /* Check if a point is in shadow by casting a ray towards the light source */
 int	is_in_shadow(t_scene *scene, t_vector point, t_vector light_pos)

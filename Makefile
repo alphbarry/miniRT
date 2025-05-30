@@ -6,7 +6,7 @@
 #    By: alpha <alpha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 19:37:41 by alpha             #+#    #+#              #
-#    Updated: 2025/05/29 18:49:52 by cgomez-z         ###   ########.fr        #
+#    Updated: 2025/05/30 02:28:57 by cgomez-z         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ FILES		=	main.c \
 				raytracing/vectors.c \
 				raytracing/raytrace.c \
 				raytracing/render_scene.c \
+				raytracing/ray_utils.c \
 				figures/cylinders.c \
 				figures/planes.c \
 				figures/spheres.c \

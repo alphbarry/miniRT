@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:20:22 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/28 17:55:54 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:53:45 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,8 @@ typedef struct s_trace
 	t_color		color;
 }	t_trace;
 
+
+
 typedef struct s_scene
 {
 	t_camera		camera;
@@ -180,6 +182,14 @@ typedef struct s_scene
 	int				cylinder_count;
 	int				light_count;
 }	t_scene;
+
+typedef struct s_cyhit
+{
+	t_vector	origin;
+	t_vector	direction;
+	float		t;
+	t_scene		*scene;
+}	t_cyhit;
 
 typedef struct s_data
 {

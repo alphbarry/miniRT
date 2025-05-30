@@ -6,7 +6,7 @@
 /*   By: cgomez-z <cgomez-z@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:57:06 by cgomez-z          #+#    #+#             */
-/*   Updated: 2025/05/28 17:57:37 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:55:20 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	check_planes(t_scene *sc, t_vector o, t_vector d, t_trace *tr)
 	}
 }
 
-/* --- Chequeo de cilindros ------------------------------------------------- */
+/* --- Chequeo de cilindros -------------------------------------------------
 static void	check_cylinders(t_scene *sc, t_vector o, t_vector d, t_trace *tr)
 {
 	int			i;
@@ -82,8 +82,36 @@ static void	check_cylinders(t_scene *sc, t_vector o, t_vector d, t_trace *tr)
 		i++;
 	}
 }
+*/
 
-/* --- Color de un píxel ---------------------------------------------------- */
+static void	check_cylinders(t_scene *sc, t_vector o, t_vector d, t_trace *tr)
+{
+	int			i;
+	float		t;
+	t_pixel		px;
+	t_cyhit		info;
+
+	i = 0;
+	while (i < sc->cylinder_count)
+	{
+		px.origin = o;
+		px.direction = d;
+		px.x = 0;
+		px.y = 0;
+		if (check_cylinder_hits(sc->cylinders[i], px, &t) && t < tr->closest_t)
+		{
+			info.origin = o;
+			info.direction = d;
+			info.t = t;
+			info.scene = sc;
+			update_trace_cylinder(tr, &sc->cylinders[i], info);
+		}
+		i++;
+	}
+}
+
+
+/* --- Color de un píxel ----------------------------------------------------
 static t_color	compute_pixel(t_scene *sc, t_mlx *mlx, t_vector o, int x, int y)
 {
 	t_trace		tr;
@@ -98,7 +126,24 @@ static t_color	compute_pixel(t_scene *sc, t_mlx *mlx, t_vector o, int x, int y)
 	check_planes(sc, o, d, &tr);
 	check_cylinders(sc, o, d, &tr);
 	return (tr.color);
+}*/
+
+static t_color compute_pixel(t_scene *sc, t_mlx *mlx, int x, int y)
+{
+	t_trace		tr;
+	t_vector	d;
+	t_vector	o;
+
+	o = sc->camera.position;
+	tr.closest_t = INFINITY;
+	tr.color = (t_color){0, 0, 0};
+	d = get_ray_direction(&sc->camera, mlx, (float)x, (float)y);
+	check_spheres(sc, o, d, &tr);
+	check_planes(sc, o, d, &tr);
+	check_cylinders(sc, o, d, &tr);
+	return (tr.color);
 }
+
 
 /* --- Función principal de render ----------------------------------------- */
 void	draw_scene(t_mlx *mlx, t_scene *sc)
@@ -116,7 +161,7 @@ void	draw_scene(t_mlx *mlx, t_scene *sc)
 		x = 0;
 		while (x < mlx->win_x)
 		{
-			c = compute_pixel(sc, mlx, o, x, y);
+			c = compute_pixel(sc, mlx, x, y);
 			set_pixel(mlx, c, x, y);
 			x++;
 		}
