@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/05/30 02:29:15 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/05/30 18:36:15 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void    free_cylinders(t_cylinder *cylinders);
 void    free_lights(t_light *lights);
 int	check_cylinder_hits(t_cylinder cyl, t_pixel px, float *t);
 void	update_trace_cylinder(t_trace *tr, t_cylinder *cy, t_cyhit info);
-/*void	calc_cylinder_quadratic(t_cylinder cyl, t_pixel px, t_cyl_hit *hit,
-		t_vector axis);*/
+void	calc_cylinder_quadratic(t_cylinder cyl, t_pixel px, t_cyl_hit *hit,
+		t_vector axis);
 
 int	parse_error(char *msg, char *value);
 
