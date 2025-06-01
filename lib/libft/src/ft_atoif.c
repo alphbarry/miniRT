@@ -6,12 +6,12 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 19:11:56 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/25 20:26:57 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/02 00:09:29 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include "libft.h"
 #include "../../../inc/minirt.h"
+#include "libft.h"
+#include <stdio.h>
 
 float	ft_atoif(char *str)
 {
@@ -26,8 +26,8 @@ float	ft_atoif(char *str)
 	sign = 1;
 	result = 0;
 	decimal_factor = 0.1f;
-	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
-		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
+	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n' || str[i] == '\r'
+		|| str[i] == '\t' || str[i] == '\v')
 		i++;
 	if (str[i] == '+')
 		i++;

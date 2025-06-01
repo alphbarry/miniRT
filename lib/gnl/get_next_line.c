@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:55:41 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/21 21:55:03 by alpha            ###   ########.fr       */
+/*   Updated: 2025/06/02 00:06:40 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -74,7 +74,7 @@ int	read_and_stash(int fd, t_g_list **stash)
 
 int	add_to_stash(t_g_list **stash, char *buf, int readed)
 {
-	int		i;
+	int			i;
 	t_g_list	*last;
 	t_g_list	*new_node;
 
@@ -134,7 +134,7 @@ int	clean_stash(t_g_list **stash, int j)
 {
 	t_g_list	*last;
 	t_g_list	*clean_node;
-	int		i;
+	int			i;
 
 	clean_node = malloc(sizeof(t_g_list));
 	if (stash == NULL || clean_node == NULL)

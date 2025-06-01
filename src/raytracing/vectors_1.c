@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectors.c                                          :+:      :+:    :+:   */
+/*   vectors_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgomez-z <cgomez-z@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cgomez-z <cgomez-z@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/28 14:40:14 by cgomez-z          #+#    #+#             */
-/*   Updated: 2025/05/28 14:40:16 by cgomez-z         ###   ########.fr       */
+/*   Created: 2025/06/02 01:19:08 by cgomez-z          #+#    #+#             */
+/*   Updated: 2025/06/02 01:19:39 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_vector	vector_add(t_vector a, t_vector b)
 	return (result);
 }
 
-//
 t_vector	vector_sub(t_vector a, t_vector b)
 {
 	t_vector	result;
@@ -42,37 +41,12 @@ t_vector	vector_scale(t_vector a, float scalar)
 	result.z = a.z * scalar;
 	return (result);
 }
-//this function is util for calculate angles, projection, verificate if two  vectors are aligned
+
 float	vector_dot(t_vector a, t_vector b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
-t_vector	vector_normalize(t_vector a)
-{
-	float	length;
-	t_vector	result;
-
-	length = sqrtf(vector_dot(a, a));//formule for length of vector "sqrt(x^2 + y^2 + z^2)"
-	if (length == 0)
-		return (a);
-	result.x = a.x / length;
-	result.y = a.y / length;
-	result.z = a.z / length;
-	return (result);
-}
-
-t_vector	vector_cross(t_vector a, t_vector b)
-{
-	t_vector	result;
-
-	result.x = a.y * b.z - a.z * b.y;
-	result.y = a.z * b.x - a.x * b.z;
-	result.z = a.x * b.y - a.y * b.x;
-	return (result);
-}
-
-/* Calculate the length (magnitude) of a vector */
 float	vector_length(t_vector a)
 {
 	return (sqrtf(vector_dot(a, a)));

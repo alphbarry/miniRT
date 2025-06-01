@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 19:10:09 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/19 11:02:02 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/02 00:16:14 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 int	is_key(int key)
 {
 	return (key == KEY_PLUS || key == KEY_PLUST || key == KEY_MINUS
-		|| key == KEY_MINUST
-		|| key == KEY_8 || key == KEY_8T || key == KEY_2 || key == KEY_2T
-		|| key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT
+		|| key == KEY_MINUST || key == KEY_8 || key == KEY_8T || key == KEY_2
+		|| key == KEY_2T || key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT
 		|| key == KEY_RIGHT || key == KEY_5 || key == KEY_5T || key == KEY_4
 		|| key == KEY_4T || key == KEY_SPACE || key == KEY_6 || key == KEY_6T);
 }
@@ -33,37 +32,14 @@ void	new_image(t_mlx *mlx)
 		i++;
 	}
 }
-/*
-void	rotate_camera(t_camera *camera, float angle_deg, char axis)
-{
-	float	angle = angle_deg * M_PI / 180.0;
-	t_vector dir = camera->tridimensional;
-	t_vector new_dir;
-
-	if (axis == 'y') // rotar en eje Y (horizontal)
-	{
-		new_dir.x = dir.x * cos(angle) + dir.z * sin(angle);
-		new_dir.y = dir.y;
-		new_dir.z = -dir.x * sin(angle) + dir.z * cos(angle);
-	}
-	else if (axis == 'x') // rotar en eje X (vertical)
-	{
-		new_dir.x = dir.x;
-		new_dir.y = dir.y * cos(angle) - dir.z * sin(angle);
-		new_dir.z = dir.y * sin(angle) + dir.z * cos(angle);
-	}
-	camera->tridimensional = vector_normalize(new_dir);
-}*/
-
 
 int	key_hook(int keycode, t_scene *scene, t_mlx *mlx)
 {
-	float speed = 10.0f;
+	float	speed;
 
+	speed = 10.0f;
 	if (keycode == KEY_ESC)
 		exit(0);
-
-	// Movimiento
 	if (keycode == KEY_UP)
 		scene->camera.position.y += speed;
 	else if (keycode == KEY_DOWN)
@@ -76,18 +52,9 @@ int	key_hook(int keycode, t_scene *scene, t_mlx *mlx)
 		scene->camera.position.z += speed;
 	else if (keycode == KEY_MINUS || keycode == KEY_MINUST)
 		scene->camera.position.z -= speed;
-
-	// Rotación básica en eje horizontal (Y)
-//	else if (keycode == KEY_4 || keycode == KEY_4T)
-//		rotate_camera(&scene->camera, -5, 'y');
-//	else if (keycode == KEY_6 || keycode == KEY_6T)
-//		rotate_camera(&scene->camera, 5, 'y');
-
-	// Redibujar la escena
 	draw_scene(mlx, scene);
 	return (0);
 }
-
 
 int	deal_key(int key, t_mlx *mlx)
 {

@@ -6,13 +6,13 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 13:24:37 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/25 20:30:11 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/02 00:09:52 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../../../inc/minirt.h"
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../../inc/minirt.h"
 
 int	ft_atoi(char *str)
 {
@@ -25,9 +25,8 @@ int	ft_atoi(char *str)
 	i = 0;
 	sign = 1;
 	result = 0;
-
-	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
-		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
+	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n' || str[i] == '\r'
+		|| str[i] == '\t' || str[i] == '\v')
 		i++;
 	if (str[i] == '+')
 		i++;
@@ -44,4 +43,3 @@ int	ft_atoi(char *str)
 		parse_error("Invalid caracter after number", str);
 	return (result * sign);
 }
-

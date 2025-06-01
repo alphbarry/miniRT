@@ -6,7 +6,7 @@
 /*   By: cgomez-z <cgomez-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 17:40:47 by cgomez-z          #+#    #+#             */
-/*   Updated: 2025/06/01 02:05:13 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/06/01 23:56:34 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ t_color	calculate_ambient_light(t_scene *scene, t_color object_color)
 	float	ambient_factor;
 
 	ambient_factor = scene->ambient.ratio + AMBIENT_BOOST;
-	ambient_color.r = object_color.r * ambient_factor * (scene->ambient.color.r / 255.0);
-	ambient_color.g = object_color.g * ambient_factor * (scene->ambient.color.g / 255.0);
-	ambient_color.b = object_color.b * ambient_factor * (scene->ambient.color.b / 255.0);
+	ambient_color.r = object_color.r * ambient_factor * (scene->ambient.color.r
+			/ 255.0);
+	ambient_color.g = object_color.g * ambient_factor * (scene->ambient.color.g
+			/ 255.0);
+	ambient_color.b = object_color.b * ambient_factor * (scene->ambient.color.b
+			/ 255.0);
 	return (ambient_color);
 }
 
-t_color	calculate_diffuse_light(t_light light, t_vector normal, 
+t_color	calculate_diffuse_light(t_light light, t_vector normal,
 		t_vector light_dir, t_color object_color)
 {
 	t_color	diffuse_color;
@@ -42,7 +45,7 @@ t_color	calculate_diffuse_light(t_light light, t_vector normal,
 	return (diffuse_color);
 }
 
-t_color	calculate_specular_light(t_vector light_dir, t_vector normal, 
+t_color	calculate_specular_light(t_vector light_dir, t_vector normal,
 		t_vector view_dir)
 {
 	t_color		spec_color;
@@ -50,10 +53,10 @@ t_color	calculate_specular_light(t_vector light_dir, t_vector normal,
 	float		specular;
 
 	reflect_dir = vector_normalize(vector_sub(
-		vector_scale(normal, 2.0f * vector_dot(light_dir, normal)),
-		light_dir));
-	specular = pow(fmax(vector_dot(reflect_dir, view_dir), 0.0f), 
-		SPECULAR_SHININESS) * SPECULAR_INTENSITY;
+				vector_scale(normal, 2.0f * vector_dot(light_dir, normal)),
+				light_dir));
+	specular = pow(fmax(vector_dot(reflect_dir, view_dir), 0.0f),
+			SPECULAR_SHININESS) * SPECULAR_INTENSITY;
 	spec_color.r = 255.0f * specular;
 	spec_color.g = 255.0f * specular;
 	spec_color.b = 255.0f * specular;
@@ -75,4 +78,3 @@ t_color	apply_color_corrections(t_color color)
 		corrected.b = 255;
 	return (corrected);
 }
-

@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:56:18 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/07/02 13:24:57 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/02 00:06:55 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	found_newline(t_g_list *stash)
 {
-	int		i;
+	int			i;
 	t_g_list	*current;
 
 	if (stash == NULL)

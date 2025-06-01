@@ -6,29 +6,48 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:06:03 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 23:43:50 by alpha            ###   ########.fr       */
+/*   Updated: 2025/06/02 00:39:03 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-void init_mlx(t_mlx *mlx)
+void	init_mlx(t_mlx *mlx)
 {
-    mlx->mlx_ptr = NULL;
-    mlx->win_ptr = NULL;
-    mlx->img_ptr = NULL;
-    mlx->img_data = NULL;
-    mlx->bpp = 0;
-    mlx->size_line = 0;
-    mlx->endian = 0;
-   	mlx->win_x = 100;
-   	mlx->win_y = 100;
+	mlx->mlx_ptr = NULL;
+	mlx->win_ptr = NULL;
+	mlx->img_ptr = NULL;
+	mlx->img_data = NULL;
+	mlx->bpp = 0;
+	mlx->size_line = 0;
+	mlx->endian = 0;
+	mlx->win_x = 100;
+	mlx->win_y = 100;
 	mlx->win_x = 1920;
 	mlx->win_y = 1080;
 	mlx->shift_x = mlx->win_x / 2;
 	mlx->shift_y = mlx->win_y / 2;
 }
 
+static void	init_image(t_mlx *mlx)
+{
+	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, 1920, 1080);
+	if (!mlx->img_ptr)
+	{
+		free(mlx->win_ptr);
+		free(mlx->mlx_ptr);
+		ft_error("Failed to create image");
+	}
+	mlx->img_data = mlx_get_data_addr(mlx->img_ptr, &mlx->bpp, &mlx->size_line,
+			&mlx->endian);
+	if (!mlx->img_data)
+	{
+		free(mlx->img_ptr);
+		free(mlx->win_ptr);
+		free(mlx->mlx_ptr);
+		ft_error("Failed to get image data address");
+	}
+}
 
 void	ft_init_mlx(t_mlx *mlx)
 {
@@ -42,22 +61,7 @@ void	ft_init_mlx(t_mlx *mlx)
 		free(mlx->mlx_ptr);
 		ft_error("Failed to create window");
 	}
-	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, 1920, 1080);
-	if (!mlx->img_ptr)
-	{
-		free(mlx->win_ptr);
-		free(mlx->mlx_ptr);
-		ft_error("Failed to create image");
-	}
-	mlx->img_data = mlx_get_data_addr(mlx->img_ptr, &mlx->bpp,
-			&mlx->size_line, &mlx->endian);
-	if (!mlx->img_data)
-	{
-		free(mlx->img_ptr);
-		free(mlx->win_ptr);
-		free(mlx->mlx_ptr);
-		ft_error("Failed to get image data address");
-	}
+	init_image(mlx);
 }
 
 int	ft_close_window(t_mlx *mlx)
