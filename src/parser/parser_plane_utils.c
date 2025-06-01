@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:55:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 22:55:00 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/01 02:30:58 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	parse_plane_position(t_plane *plane, char *pos_str)
 
 	pos = ft_split(pos_str, ',');
 	if (!validate_coordinates(pos, "Invalid plane position", pos_str))
-		return;
+		return ;
 	plane->point.x = ft_atoif(pos[0]);
 	plane->point.y = ft_atoif(pos[1]);
 	plane->point.z = ft_atoif(pos[2]);
@@ -31,7 +31,7 @@ void	parse_plane_normal(t_plane *plane, char *normal_str)
 
 	trid = ft_split(normal_str, ',');
 	if (!validate_coordinates(trid, "Invalid plane normal", normal_str))
-		return;
+		return ;
 	plane->normal.x = ft_atoif(trid[0]);
 	plane->normal.y = ft_atoif(trid[1]);
 	plane->normal.z = ft_atoif(trid[2]);
@@ -76,4 +76,3 @@ t_plane	*set_plane_properties(void)
 	init_plane(plane);
 	return (plane);
 }
-

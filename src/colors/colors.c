@@ -6,11 +6,11 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:05:52 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 23:27:36 by alpha            ###   ########.fr       */
+/*   Updated: 2025/06/01 01:59:57 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int	color_to_int(t_color color)
 {
@@ -46,7 +46,6 @@ int	apply_ratio_to_color(t_color color, float ratio)
 	r = (int)(color.r * ratio);
 	g = (int)(color.g * ratio);
 	b = (int)(color.b * ratio);
-
 	if (r > 255)
 		r = 255;
 	if (g > 255)
@@ -56,13 +55,12 @@ int	apply_ratio_to_color(t_color color, float ratio)
 	return (r << 16 | g << 8 | b);
 }
 
-void fill_background(t_mlx *mlx, t_scene *scene)
+void	fill_background(t_mlx *mlx, t_scene *scene)
 {
-	int x;
-	int y;
-	int color;
+	int	x;
+	int	y;
+	int	color;
 
-	// Aplica el ratio de la luz ambiente al color
 	color = apply_ratio_to_color(scene->ambient.color, scene->ambient.ratio);
 	y = 0;
 	while (y < mlx->win_y)
@@ -75,6 +73,5 @@ void fill_background(t_mlx *mlx, t_scene *scene)
 		}
 		y++;
 	}
-	// Muestra la imagen generada en la ventana
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
 }

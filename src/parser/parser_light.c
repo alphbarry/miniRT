@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_light.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cgomez-z <cgomez-z@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/01 02:24:55 by cgomez-z          #+#    #+#             */
+/*   Updated: 2025/06/01 02:24:59 by cgomez-z         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/minirt.h"
 
 void	get_light(t_scene *scene, char *line)
@@ -6,19 +18,16 @@ void	get_light(t_scene *scene, char *line)
 
 	split = ft_split(line, ' ');
 	if (!validate_split(split, "Split failed", line))
-		return;
+		return ;
 	init_light(&scene->lights[scene->light_count]);
 	if (split[1])
 		parse_light_position(scene->lights, split[1]);
 	else
 		parse_error("Light position missing", line);
-	
 	if (!parse_light_intensity(scene->lights, split[2]))
-		return;
-	
+		return ;
 	if (!parse_light_color(scene->lights, split[3]))
-		return;
-	
+		return ;
 	scene->light_count++;
 	free_split(split);
 }

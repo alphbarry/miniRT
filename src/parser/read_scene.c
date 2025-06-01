@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:13:50 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/23 18:58:02 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/01 02:29:50 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 int	parse_error(char *msg, char *value)
 {
 	printf("Error: %s -> '%s'\n", msg, value);
-	exit (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 void	count_objects(t_scene *scene, int fd)
 {
 	char	*line;
+
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -28,7 +29,7 @@ void	count_objects(t_scene *scene, int fd)
 		{
 			free(line);
 			line = get_next_line(fd);
-			continue;
+			continue ;
 		}
 		if (ft_strncmp(line, "L ", 2) == 0)
 			scene->light_count++;
@@ -50,12 +51,11 @@ void	get_scene(t_scene *scene, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		//printf("DEBUG: Parsing line: '%s'\n", line);
 		if (line[0] == '\n' || line[0] == '#')
 		{
 			free(line);
 			line = get_next_line(fd);
-			continue;
+			continue ;
 		}
 		if (ft_strncmp(line, "A ", 2) == 0)
 			get_ambient(scene, line);
@@ -78,7 +78,7 @@ void	get_scene(t_scene *scene, int fd)
 
 int	read_file(char *file, t_scene *scene, t_mlx *mlx)
 {
-	int		fd;
+	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)

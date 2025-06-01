@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:33:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 22:33:00 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/01 02:25:18 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	parse_light_intensity(t_light *light, char *intensity_str)
 		return (0);
 	}
 	light->intensity = ft_atoif(intensity_str);
-	if (!validate_numeric_range(light->intensity, 0, 1, 
+	if (!validate_numeric_range(light->intensity, 0, 1,
 			"Light intensity out of range"))
 		return (0);
 	return (1);
@@ -54,13 +54,13 @@ int	parse_light_color(t_light *light, char *color_str)
 	light->color.r = ft_atoi(rgb[0]);
 	light->color.g = ft_atoi(rgb[1]);
 	light->color.b = ft_atoi(rgb[2]);
-	if (!validate_color_component(light->color.r, rgb[0], 
+	if (!validate_color_component(light->color.r, rgb[0],
 			"Light red value out of range"))
 		return (0);
-	if (!validate_color_component(light->color.g, rgb[1], 
+	if (!validate_color_component(light->color.g, rgb[1],
 			"Light green value out of range"))
 		return (0);
-	if (!validate_color_component(light->color.b, rgb[2], 
+	if (!validate_color_component(light->color.b, rgb[2],
 			"Light blue value out of range"))
 		return (0);
 	free_split(rgb);
@@ -77,4 +77,3 @@ t_light	*set_light_properties(void)
 	init_light(light);
 	return (light);
 }
-

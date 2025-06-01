@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:38:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 22:38:00 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/01 02:28:18 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	parse_sphere_position(t_sphere *sphere, char *pos_str)
 
 	pos = ft_split(pos_str, ',');
 	if (!validate_coordinates(pos, "Invalid sphere position", pos_str))
-		return;
+		return ;
 	sphere->center.x = ft_atoif(pos[0]);
 	sphere->center.y = ft_atoif(pos[1]);
 	sphere->center.z = ft_atoif(pos[2]);
@@ -72,10 +72,9 @@ int	parse_sphere_color(t_sphere *sphere, char *color_str)
 void	set_sphere_properties(t_scene *scene, t_sphere new_sphere)
 {
 	scene->sphere_count++;
-	scene->spheres = realloc(scene->spheres, 
-			scene->sphere_count * sizeof(t_sphere));
+	scene->spheres = realloc(scene->spheres, scene->sphere_count
+			* sizeof(t_sphere));
 	if (!scene->spheres)
 		parse_error("Memory allocation failed for spheres", NULL);
 	scene->spheres[scene->sphere_count - 1] = new_sphere;
 }
-

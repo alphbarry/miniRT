@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:45:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 22:47:31 by alpha            ###   ########.fr       */
+/*   Updated: 2025/06/01 02:27:48 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	parse_cylinder_position(t_cylinder *cylinder, char *pos_str)
 
 	pos = ft_split(pos_str, ',');
 	if (!validate_coordinates(pos, "Invalid cylinder position", pos_str))
-		return;
+		return ;
 	cylinder->center.x = ft_atoif(pos[0]);
 	cylinder->center.y = ft_atoif(pos[1]);
 	cylinder->center.z = ft_atoif(pos[2]);
@@ -31,14 +31,14 @@ void	parse_cylinder_orientation(t_cylinder *cylinder, char *orient_str)
 
 	trid = ft_split(orient_str, ',');
 	if (!validate_coordinates(trid, "Invalid cylinder orientation", orient_str))
-		return;
+		return ;
 	cylinder->normal.x = ft_atoif(trid[0]);
 	cylinder->normal.y = ft_atoif(trid[1]);
 	cylinder->normal.z = ft_atoif(trid[2]);
 	free_split(trid);
 }
 
-int	parse_cylinder_dimensions(t_cylinder *cylinder, char *radius_str, 
+int	parse_cylinder_dimensions(t_cylinder *cylinder, char *radius_str,
 		char *height_str)
 {
 	if (!radius_str)
@@ -104,4 +104,3 @@ t_cylinder	*set_cylinder_properties(void)
 	init_cylinder(cylinder);
 	return (cylinder);
 }
-

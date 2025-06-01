@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:30:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 22:30:00 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/01 02:27:28 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,3 @@ int	validate_split(char **split, char *err_msg, char *line)
 	}
 	return (1);
 }
-

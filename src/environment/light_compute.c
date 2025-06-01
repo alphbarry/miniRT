@@ -6,7 +6,7 @@
 /*   By: cgomez-z <cgomez-z@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 17:40:47 by cgomez-z          #+#    #+#             */
-/*   Updated: 2025/05/27 17:40:47 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/06/01 02:02:21 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	add_light_contribution(t_scene *scene, t_light light,
 	light_dir = vector_normalize(vector_sub(light.position, data->point));
 	if (!is_in_shadow(scene, data->point, light.position))
 	{
-		contrib = calculate_diffuse_light(light, data->normal,
-				light_dir, data->object_color);
+		contrib = calculate_diffuse_light(light, data->normal, light_dir,
+				data->object_color);
 		data->final_color = vector_add_color(data->final_color, contrib);
 		contrib = calculate_specular_light(light_dir, data->normal,
 				data->view_dir);
@@ -35,8 +35,8 @@ void	add_light_contribution(t_scene *scene, t_light light,
 	}
 }
 
-t_color	compute_lighting(t_scene *scene, t_vector point,
-		t_vector normal, t_color object_color)
+t_color	compute_lighting(t_scene *scene, t_vector point, t_vector normal,
+		t_color object_color)
 {
 	t_lighting_data	data;
 	int				i;
@@ -54,4 +54,3 @@ t_color	compute_lighting(t_scene *scene, t_vector point,
 	}
 	return (apply_color_corrections(data.final_color));
 }
-
