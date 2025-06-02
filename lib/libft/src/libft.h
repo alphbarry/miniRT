@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 18:08:16 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/04/25 20:28:38 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/02 22:05:30 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strjoin3(char const *s1, char const *s2,
 						char const *s3);
 char				**ft_split(char const *s, char c);
+char				**ft_split_all_spaces(char const *s);
 char				**my_free_split(char **split);
 char				*ft_itoa(int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));

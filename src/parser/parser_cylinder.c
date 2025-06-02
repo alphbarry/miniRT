@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:55:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/06/01 02:27:39 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 22:35:31 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	get_cylinder(t_scene *scene, char *line)
 {
 	char	**split;
 
-	split = ft_split(line, ' ');
+	split = ft_split_all_spaces(line);
 	if (!validate_split(split, "Split failed", line))
 		return ;
 	init_cylinder(&scene->cylinders[scene->cylinder_count]);

@@ -6,7 +6,7 @@
 #    By: alpha <alpha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 19:37:41 by alpha             #+#    #+#              #
-#    Updated: 2025/06/02 01:20:19 by cgomez-z         ###   ########.fr        #
+#    Updated: 2025/06/02 22:23:16 by cgomez-z         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ FILES		=	main.c \
 				parser/parser_sphere_utils.c \
 				parser/parser_validation.c \
 				parser/read_scene.c \
+				parser/read_scene_utils.c \
 				utils/free_objects.c \
                 utils/free_scene.c \
 				window/mlx.c \

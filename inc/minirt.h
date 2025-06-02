@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/06/02 00:47:48 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 22:37:46 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_lighting_data
 int				key_hook(int keycode, t_scene *scene, t_mlx *mlx);
 
 // parse
+char			*skip_spaces(char *line);
 int				read_file(char *file, t_scene *scene, t_mlx *mlx);
 void			get_ambient(t_scene *scene, char *line);
 void			get_camera(t_scene *scene, char *line);

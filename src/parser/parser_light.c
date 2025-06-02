@@ -6,7 +6,7 @@
 /*   By: cgomez-z <cgomez-z@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 02:24:55 by cgomez-z          #+#    #+#             */
-/*   Updated: 2025/06/01 02:24:59 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 22:35:45 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	get_light(t_scene *scene, char *line)
 {
 	char	**split;
 
-	split = ft_split(line, ' ');
+	split = ft_split_all_spaces(line);
 	if (!validate_split(split, "Split failed", line))
 		return ;
 	init_light(&scene->lights[scene->light_count]);

@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:13:50 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/06/02 00:36:06 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 22:33:15 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,25 @@ int	parse_error(char *msg, char *value)
 void	count_objects(t_scene *scene, int fd)
 {
 	char	*line;
+	char	*ptr;
 
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[0] == '\n' || line[0] == '#')
+		ptr = skip_spaces(line);
+		if (*ptr == '\n' || *ptr == '#' || *ptr == '\0')
 		{
 			free(line);
 			line = get_next_line(fd);
 			continue ;
 		}
-		if (ft_strncmp(line, "L ", 2) == 0)
+		if (!ft_strncmp(ptr, "L", 1) && (ptr[1] == ' ' || ptr[1] == '\t'))
 			scene->light_count++;
-		else if (ft_strncmp(line, "sp ", 3) == 0)
+		else if (!ft_strncmp(ptr, "sp", 2) && (ptr[2] == ' ' || ptr[2] == '\t'))
 			scene->sphere_count++;
-		else if (ft_strncmp(line, "pl ", 3) == 0)
+		else if (!ft_strncmp(ptr, "pl", 2) && (ptr[2] == ' ' || ptr[2] == '\t'))
 			scene->plane_count++;
-		else if (ft_strncmp(line, "cy ", 3) == 0)
+		else if (!ft_strncmp(ptr, "cy", 2) && (ptr[2] == ' ' || ptr[2] == '\t'))
 			scene->cylinder_count++;
 		free(line);
 		line = get_next_line(fd);
@@ -46,20 +48,23 @@ void	count_objects(t_scene *scene, int fd)
 
 static void	parse_line(t_scene *scene, char *line)
 {
-	if (ft_strncmp(line, "A ", 2) == 0)
-		get_ambient(scene, line);
-	else if (ft_strncmp(line, "C ", 2) == 0)
-		get_camera(scene, line);
-	else if (ft_strncmp(line, "L ", 2) == 0)
-		get_light(scene, line);
-	else if (ft_strncmp(line, "sp ", 3) == 0)
-		get_sphere(scene, line);
-	else if (ft_strncmp(line, "pl ", 3) == 0)
-		get_plane(scene, line);
-	else if (ft_strncmp(line, "cy ", 3) == 0)
-		get_cylinder(scene, line);
+	char	*ptr;
+
+	ptr = skip_spaces(line);
+	if (!ft_strncmp(ptr, "A", 1) && (ptr[1] == ' ' || ptr[1] == '\t'))
+		get_ambient(scene, ptr);
+	else if (!ft_strncmp(ptr, "C", 1) && (ptr[1] == ' ' || ptr[1] == '\t'))
+		get_camera(scene, ptr);
+	else if (!ft_strncmp(ptr, "L", 1) && (ptr[1] == ' ' || ptr[1] == '\t'))
+		get_light(scene, ptr);
+	else if (!ft_strncmp(ptr, "sp", 2) && (ptr[2] == ' ' || ptr[2] == '\t'))
+		get_sphere(scene, ptr);
+	else if (!ft_strncmp(ptr, "pl", 2) && (ptr[2] == ' ' || ptr[2] == '\t'))
+		get_plane(scene, ptr);
+	else if (!ft_strncmp(ptr, "cy", 2) && (ptr[2] == ' ' || ptr[2] == '\t'))
+		get_cylinder(scene, ptr);
 	else
-		printf("Unknown identifier\n");
+		parse_error("Unknown identifier", ptr);
 }
 
 void	get_scene(t_scene *scene, int fd)

@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 20:06:09 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/06/02 00:41:06 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 22:05:58 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	get_ambient(t_scene *scene, char *line)
 {
 	char	**split;
 
-	split = ft_split(line, ' ');
+	split = ft_split_all_spaces(line);
 	if (!split)
 		parse_error("Split failed", line);
 	init_ambient(&scene->ambient);
