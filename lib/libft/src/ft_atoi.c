@@ -6,13 +6,20 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 13:24:37 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/06/02 00:09:52 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/06/02 20:07:59 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../../inc/minirt.h"
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+static void	deletespace(char *str, int i)
+{
+	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n' || str[i] == '\r'
+		|| str[i] == '\t' || str[i] == '\v')
+		i++;
+}
 
 int	ft_atoi(char *str)
 {
@@ -25,9 +32,7 @@ int	ft_atoi(char *str)
 	i = 0;
 	sign = 1;
 	result = 0;
-	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n' || str[i] == '\r'
-		|| str[i] == '\t' || str[i] == '\v')
-		i++;
+	deletespace(str, i);
 	if (str[i] == '+')
 		i++;
 	else if (str[i] == '-')
