@@ -6,7 +6,7 @@
 /*   By: cgomez-z <cgomez-z@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 17:57:06 by cgomez-z          #+#    #+#             */
-/*   Updated: 2025/06/01 23:39:25 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/06/06 18:33:03 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,9 @@ void	draw_scene(t_mlx *mlx, t_scene *sc)
 {
 	int			x;
 	int			y;
-	t_vector	o;
 	t_color		c;
 
 	fill_background(mlx, sc);
-	o = sc->camera.position;
 	y = 0;
 	while (y < mlx->win_y)
 	{
