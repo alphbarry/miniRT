@@ -6,23 +6,23 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:55:49 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/05/16 19:44:49 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/07 14:44:54 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	ft_error(char *message)
-{
-	printf ("Error: %s\n", message);
-}
+
 
 int	main(int ac, char **av)
 {
 	t_mlx	mlx;
 	t_scene	scene;
 
-	(void)ac;
+	if (ac < 2)
+		ft_error("Usage: ./minirt <scene_file.rt>");
+	else if (!ft_extension_rt(av[1], open(av[1], O_RDONLY)))
+		ft_error("Invalid file extension. Expected .rt");
 	ft_init_mlx(&mlx);
 	read_file(av[1], &scene, &mlx);
 	mlx_hook(mlx.win_ptr, 17, 0, ft_close_window, &mlx);
