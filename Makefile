@@ -6,7 +6,7 @@
 #    By: alpha <alpha@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 19:37:41 by alpha             #+#    #+#              #
-#    Updated: 2025/06/09 14:46:48 by alphbarr         ###   ########.fr        #
+#    Updated: 2025/06/09 15:02:54 by alphbarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ INCLUDE		=	-I$(HEADER) -I$(PRINTF_H) -I$(LIBFT_H) -I$(MLX_H)
 RM			=	rm -rf
 MKD			=	mkdir -p
 MK			=	Makefile
-CFLAGS		=	-Wall -Wextra -Werror #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address
 MKFLAGS		=	--no-print-directory
 
 #<--------------------------------->RULES<----------------------------------->#
