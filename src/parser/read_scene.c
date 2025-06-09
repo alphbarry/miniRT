@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:13:50 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/06/07 14:43:46 by alpha            ###   ########.fr       */
+/*   Updated: 2025/06/09 14:45:00 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	get_scene(t_scene *scene, int fd)
 int	read_file(char *file, t_scene *scene, t_mlx *mlx)
 {
 	int	fd;
-	
+
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
