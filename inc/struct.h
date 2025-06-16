@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 19:20:22 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/06/01 23:59:56 by cgomez-z         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:36:03 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ typedef struct s_scene
 	t_cylinder			*cylinders;
 	t_light				*lights;
 	t_ambient			ambient;
+	int					general_count;
 	int					sphere_count;
 	int					plane_count;
 	int					cylinder_count;
