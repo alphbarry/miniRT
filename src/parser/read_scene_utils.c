@@ -6,7 +6,7 @@
 /*   By: cgomez-z <cgomez-z@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 22:22:28 by cgomez-z          #+#    #+#             */
-/*   Updated: 2025/06/12 19:07:50 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/17 19:06:27 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,15 @@ int	ft_extension_rt(char *filename, int fd)
 
 int	validate_field_count(char **fields, int expected, char *err_msg, char *line)
 {
-    int	count = 0;
-    while (fields && fields[count])
-        count++;
-    if (count != expected)
-    {
-        parse_error(err_msg, line);
-        return (0);
-    }
-    return (1);
+	int	count;
+
+	count = 0;
+	while (fields && fields[count])
+		count++;
+	if (count != expected)
+	{
+		parse_error(err_msg, line);
+		return (0);
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:13:50 by alphbarr          #+#    #+#             */
-/*   Updated: 2025/06/16 20:20:22 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/17 19:05:06 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ int	count_scene(t_scene *scene, int fd)
 {
 	char	*line;
 	char	*ptr;
-	int		has_a = 0;
-	int		has_c = 0;
-	int		has_l = 0;
+	int		has_a;
+	int		has_c;
+	int		has_l;
 
+	has_a = 0;
+	has_c = 0;
+	has_l = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -34,7 +37,7 @@ int	count_scene(t_scene *scene, int fd)
 		{
 			free(line);
 			line = get_next_line(fd);
-			continue;
+			continue ;
 		}
 		if (ptr[0] == 'A' && (ptr[1] == ' ' || ptr[1] == '\t'))
 			has_a++;
@@ -55,7 +58,6 @@ int	count_scene(t_scene *scene, int fd)
 	scene->general_count = has_a + has_c + has_l;
 	return (scene->general_count);
 }
-
 
 void	count_objects(t_scene *scene, int fd)
 {
@@ -133,7 +135,8 @@ int	read_file(char *file, t_scene *scene, t_mlx *mlx)
 	if (fd < 0 || count_scene(scene, fd) < 3)
 	{
 		close(fd);
-		fprintf(stderr, "Error: Scene must contain 1 ambient, 1 camera, and at least 1 light\n");
+		fprintf(stderr, "Error: Scene must contain 1 ambient, "
+			"1 camera, and at least 1 light\n");
 		exit(1);
 	}
 	close(fd);
@@ -158,4 +161,3 @@ int	read_file(char *file, t_scene *scene, t_mlx *mlx)
 	draw_scene(mlx, scene);
 	return (0);
 }
-
