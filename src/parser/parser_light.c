@@ -15,7 +15,15 @@
 void	get_light(t_scene *scene, char *line)
 {
 	char	**split;
+	char	**fields;
 
+	fields = ft_split_all_spaces(line);
+	if (!validate_field_count(fields, 4, "Invalid light definition", line))
+	{
+		free_split(fields);
+		return ;
+	}
+	free_split(fields);
 	split = ft_split_all_spaces(line);
 	if (!validate_split(split, "Split failed", line))
 		return ;

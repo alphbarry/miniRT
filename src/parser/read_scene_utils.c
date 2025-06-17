@@ -53,3 +53,16 @@ int	ft_extension_rt(char *filename, int fd)
 	}
 	return (1);
 }
+
+int	validate_field_count(char **fields, int expected, char *err_msg, char *line)
+{
+    int	count = 0;
+    while (fields && fields[count])
+        count++;
+    if (count != expected)
+    {
+        parse_error(err_msg, line);
+        return (0);
+    }
+    return (1);
+}

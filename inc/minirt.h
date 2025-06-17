@@ -42,6 +42,8 @@ typedef struct s_lighting_data
 int				key_hook(int keycode, t_scene *scene, t_mlx *mlx);
 
 // parse
+int				validate_field_count(char **fields, int expected_count,
+					char *err_msg, char *line);
 int				ft_extension_rt(char *filename, int fd);
 char			*skip_spaces(char *line);
 int				read_file(char *file, t_scene *scene, t_mlx *mlx);
