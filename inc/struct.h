@@ -93,6 +93,7 @@ typedef struct s_color
 	int					r;
 	int					g;
 	int					b;
+	int					count_color;
 }						t_color;
 
 typedef struct s_ray
@@ -106,6 +107,7 @@ typedef struct s_camara
 	t_vector			position;
 	t_vector			tridimensional;
 	float				fov;
+	int					count_camara;
 }						t_camera;
 
 typedef struct s_sphere
@@ -113,6 +115,7 @@ typedef struct s_sphere
 	t_vector			center;
 	float				radius;
 	t_color				color;
+	int					count_sphere;
 	struct s_sphere		*next;
 }						t_sphere;
 
@@ -121,6 +124,7 @@ typedef struct s_plane
 	t_vector			point;
 	t_vector			normal;
 	t_color				color;
+	int					count_plane;
 	struct s_plane		*next;
 }						t_plane;
 
@@ -131,6 +135,7 @@ typedef struct s_cylinder
 	float				radius;
 	float				height;
 	t_color				color;
+	int					count_cylinder;
 	struct s_cylinder	*next;
 }						t_cylinder;
 
@@ -146,6 +151,7 @@ typedef struct s_light
 	t_vector			position;
 	float				intensity;
 	t_color				color;
+	int					count_light;
 	struct s_light		*next;
 }						t_light;
 
@@ -153,6 +159,7 @@ typedef struct s_ambient
 {
 	float				ratio;
 	t_color				color;
+	int					count_ambiente;
 }						t_ambient;
 
 /* --- Estructura auxiliar para un solo “slot” de intersección -------------- */
