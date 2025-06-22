@@ -6,7 +6,7 @@
 /*   By: alpha <alpha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 19:37:41 by alpha             #+#    #+#             */
-/*   Updated: 2025/06/07 14:37:07 by alpha            ###   ########.fr       */
+/*   Updated: 2025/06/22 23:40:01 by cgomez-z         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ typedef struct s_lighting_data
 int				key_hook(int keycode, t_scene *scene, t_mlx *mlx);
 
 // parse
+void			parse_scene_from_file(char *file, t_scene *scene);
+int				count_scene(t_scene *scene, int fd);
+void			get_scene(t_scene *scene, int fd);
+void			count_objects(t_scene *scene, int fd);
 int				validate_field_count(char **fields, int expected_count,
 					char *err_msg, char *line);
 int				ft_extension_rt(char *filename, int fd);
