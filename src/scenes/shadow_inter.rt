@@ -1,0 +1,7 @@
+A 0.2 255,255,255
+L 20,50,50 0.9 255,255,255
+C 0,3,150 0,-0.2,-1 60
+pl 0,-2,0 0,1,0 180,180,180        # suelo
+cy -10,-2,40 0,1,0 3 7 255,100,0   # cilindro naranja
+cy 10,-2,30 0,1,0 3 7 0,150,255    # cilindro azul
+sp 0,5,35 5 255,0,255              # esfera flotando sobre los cilindros
