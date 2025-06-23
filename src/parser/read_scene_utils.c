@@ -6,7 +6,7 @@
 /*   By: cgomez-z <cgomez-z@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 22:22:28 by cgomez-z          #+#    #+#             */
-/*   Updated: 2025/06/17 19:06:27 by alphbarr         ###   ########.fr       */
+/*   Updated: 2025/06/23 12:37:10 by alpha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_extension_rt(char *filename, int fd)
 	if (!ft_dir(filename))
 	{
 		close(fd);
-		return (0);
+		return (-1);
 	}
 	dot = ft_strrchr(filename, '.');
 	if (!dot || ft_strcmp(dot, ".rt") != 0)
