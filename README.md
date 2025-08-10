@@ -4,14 +4,23 @@
 
 miniRT is a ray tracing engine developed in C as part of the 42 school curriculum. The project aims to simulate the behavior of light in a 3D environment to render photorealistic images. It serves as an introduction to computer graphics and ray tracing concepts.
 
-## ⚙️ Key Features
+## ⚙️ Features
 
-- **Geometric Primitives**: Supports spheres, planes, and cylinders.
-- **Lighting**: Implements ambient and point light sources.
-- **Reflection**: Utilizes the Phong reflection model for specular highlights.
-- **File Parsing**: Reads scene descriptions from `.rt` files.
-- **Rendering**: Outputs images in PPM format.
+- **Geometric Primitives**: Support for spheres, planes, and cylinders.
+- **Lighting Model**: Implements ambient, diffuse, and specular lighting using the Phong reflection model.
+- **Shadow Casting**: Calculates shadows to add realism to scenes.
+- **Scene Description Parsing**: Reads scene configurations from `.rt` files, including camera setup, light sources, and objects.
+- **Image Output**: Renders images and saves them in the PPM (Portable Pixmap) format.
+- **Basic Camera Controls**: Supports field of view and camera positioning.
 
+---
+
+## 🛠️ Technologies Used
+
+- C programming language  
+- Math libraries for vector and matrix operations  
+- File I/O for scene parsing  
+- Algorithms for ray-object intersection and shading  
 ## 🛠️ Installation
 
 Clone the repository:
